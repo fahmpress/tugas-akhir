@@ -21,10 +21,10 @@ Beberapa server farm terbesar di dunia saat ini berdasar teknologi container. De
 Berdasarkan pemaparan diatas maka penulis mengidentifikasi beberapa rumusan masalah sebagai berikut: 
 
 1. Bagaimana implementasi pengembangan aplikasi berbasis web menggunakan linux container Docker?
-2. Bagaimana efektifitas Docker dalam penggunaan sumber daya penyimpanan dan memory?
+2. Bagaimana efektifitas container Docker dalam penggunaan sumber daya penyimpanan dan memory dibandingkan dengan mesin virtual tradisional?
 3. Bagaimana kompabilitas container Docker untuk menjalankan aplikasi yang telah dibangun pada platform yang berbeda sebagai cara untuk mengatasi permasalahan cross-platform dependencies?
 4. Bagaimana komplabilitas container Docker untuk menjalankan aplikasi yang berbeda versi dalam satu mesin sebagai cara untuk mengatasi permasalahan conflicting dependencies?
-5. Bagaimana kompabilitas container Docker untuk menjalankan aplikasi yang telah dibangun pada lingkungan yang berbeda?
+5. Bagaimana kompabilitas container Docker untuk menjalankan aplikasi yang telah dibangun pada lingkungan *host* yang berbeda?
 
 ###1.3	Batasan Masalah
  
@@ -39,7 +39,7 @@ Setelah menelaah rumusan masalah diatas, maka didapat beberapa batasan masalah d
 Tujuan dan manfaat penulisan tugas akhir ini adalah :
 
 1.	Melakukan pengujian terhadap kompabilitas Docker sebagai Platform as a Service untuk mengatasi permasalahan “Dependency Hell” yang dihadapi developer web dalam pengembangan dan pendistribusian aplikasinya.
-2.	Melakukan pengujian terhadap efektifitas Docker sebagai software operating system-level virtualization dalam penggunaan sumber daya penyimpanan dan memory, dan membandingkannya dengan software virtualisasi lain (OpenVZ).
+2.	Melakukan pengujian terhadap efektifitas Docker sebagai software virtualisasi modern dalam penggunaan sumber daya penyimpanan dan memory, dan membandingkannya dengan software virtualisasi model lama (tradisional).
 3.	Mengenalkan penggunaan Docker sebagai Platform as a Service yang mudah digunakan, ringan dan cepat proses deployment-nya.
 
 ###1.5	Metode Penelitian
