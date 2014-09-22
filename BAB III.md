@@ -16,6 +16,7 @@ Dalam Linux boot tradisional, kernel pertama kali menggunakan (*mount*) *root fi
 Sama seperti Linux boot tradisional, `rootfs` pada Docker akan di-*mount* pertama kali dalam mode *read-only*, namun kemudian, tidak merubah file system menjadi mode *read-write*, Docker mengambil keuntungan dari *union mount* untuk menambah file system *read-write* di atas file system read-only*. Hasilnya, akan ada beberapa file system *read-only* ditumpuk di atasnya satu sama lain. 
 
 ![alt text](https://github.com/fahmpress/tugas-akhir/blob/master/images/gambar3.1.jpg "Gambar 3.1")
+
 Gambar 3.1 File system as a Layer
 
 Pertama kali, tidak ada apa-apa pada lapisan *read-write* paling atas, namun kapan saja berjalan sebuah proses akan menghasilkan sebuah file, hal ini terjadi pada lapisan di atasnya. Dan jika sesuatu memerlukan *update* pada file yang berada di lapisan lebih rendah, maka file akan disalin ke lapisan yang lebih atas dan perubahan berbentuk sebuah salinan. Versi file di lapisan di bawahnya tidak bisa lagi terlihat oleh aplikasi, padahal sebenarnya ada, dan tidak berubah.
@@ -32,6 +33,7 @@ Untuk malakukan pengujian tersebut penulis akan menginstall Docker dan VirtualBo
 Dalam proses deployment-nya Docker container menggunakan shared kernel dari mesin host tanpa ada perantara lapisan virtualisasi seperti *hypervisor*, maka proses menjadi lebih ringan sehingga bisa menghemat memory dan overhead pada mesin host (*zero overhead*) sehingga memungkinkan untuk menjalankan banyak container dalam satu mesin, berbeda dengan virtualisasi tradisional yang menggunakan *hypervisor* dan kernel tersendiri dari mesin host.
 
 ![alt text](https://github.com/fahmpress/tugas-akhir/blob/master/images/gambar3.2.jpg "Gambar 3.2")
+
 Gambar 3.2 Shared Host Kernel pada Docker
 
 Untuk pengujian ini akan dilakukan komparasi saat proses *deployment* mesin virtual (container) antara Docker dan VirtualBox. Docker dan Virtualbox akan diinstal pada mesin host dan sistem operasi yang sama. Setelah itu akan dijalankan beberapa mesin virtual dan container lalu akan dilihat penggunaan memorynya. Pengukuran memory akan menggunakan htop. Parameter uji dalam pengujian ini adalah besaran kenaikan memory yang digunakan saat menjalankan mesin virtual atau container.
