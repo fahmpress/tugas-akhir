@@ -24,10 +24,10 @@
 
 - **How is Docker Diffrent from a Normal Virtual Machine**, http://stackoverflow.com/questions/16047306/how-is-docker-io-different-from-a-normal-virtual-machine, 21 September 2014
 
-- https://docs.docker.com/terms/layer/, 21 September 2014
+- **Docker Layer**, https://docs.docker.com/terms/layer/, 21 September 2014
 
-- https://docs.docker.com/faq/, 21 September 2014
+- **Docker FAQ**, https://docs.docker.com/faq/, 21 September 2014
 
-- https://github.com/docker/docker, 21 September 2014
+- **Docker**, https://github.com/docker/docker, 21 September 2014
 
-- http://en.wikipedia.org/wiki/Dependency_hell, 21 September 2014
+- **Dependency Hell**, http://en.wikipedia.org/wiki/Dependency_hell, 21 September 2014
