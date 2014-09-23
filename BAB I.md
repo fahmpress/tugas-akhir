@@ -63,5 +63,5 @@ Dalam bab ini penulis menjelaskan mengenai teori-teori yang berkaitan dengan jud
 Dalam bab ini akan menjelaskan mengenai perancangan serta implementasian  dalam penggunaan Docker sebagai Platform as a Service.
 #####BAB IV PENGUJIAN KOMPABILITAS DAN EFEKTIFITAS DOCKER
 Dalam bab ini menjelaskan mengenai pengujian kompabilitas Dockerized App saat dijalankan di lingkungan yang berbeda, dan efektifitas penggunaan sumber daya penyimpanan dan memory dalam proses deployment sebuah aplikasi berbasis web.
-######BAB V KESIMPULAN DAN SARAN
+#####BAB V KESIMPULAN DAN SARAN
 Dalam bab ini akan dibahas mengenai kesimpulan yang merupakan hasil dari implementasi dan saran-saran dari penulis sebagai bahan pertimbangan untuk implementasi Docker sebagai Platform as a Service.
