@@ -1,8 +1,7 @@
-##TUGAS AKHIR: Uji Kompabilitas dan Efektifitas Container Docker Sebagai *Platform as a Service* Dalam Pengembangan Aplikasi Berbasis Web
+TUGAS AKHIR
+===========
+###Uji Kompabilitas dan Efektifitas Container Docker Sebagai *Platform as a Service* Dalam Pengembangan Aplikasi Berbasis Web
 <br>
-
-
-<img style="float: center" src="https://github.com/fahmpress/tugas-akhir/blob/master/images/cover.jpg">
 
 ![](https://github.com/fahmpress/tugas-akhir/blob/master/images/cover.jpg "Politeknik Sukabumi")
 
