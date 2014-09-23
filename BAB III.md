@@ -68,3 +68,6 @@ Docker hanya bisa berjalan pada kernel yang sudah ditentukan yaitu 3.8 ke atas, 
 Pengecualian untuk variasi uji penghematan memory dan penyimpanan, penulis akan membandingkan kinerja dua mesin menggunakan sistem operasi Proxmox dengan versi kernel 2.6, penulis akan membuat 2 mesin virtual dengan sistem operasi Proxmox dengan versi kernel yang berbeda.
 
 ###3.3	Topologi Jaringan
+
+
+`last edited: 9/23/2014 2:04:01 PM`
