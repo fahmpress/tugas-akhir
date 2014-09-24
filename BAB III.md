@@ -171,7 +171,7 @@ Topologi jaringan yang dibahas pada tahap ini hanya menjelaskan hubungan host ya
 
 Gambar 3.3 Docker Registry
 
-####3.3.1 Memindahkan Docker Image Melalui FTP
+####3.3.2 Memindahkan Docker Image Melalui FTP
 
 Selain menggunakan Docker registry, image juga bisa dipindahkan dengan menyimpan image tersebut ke dalam bentuk .tar lalu memindahkannya melalui FTP ke host yang lain.
 
