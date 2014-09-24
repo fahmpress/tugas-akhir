@@ -40,4 +40,10 @@
 
 - **Docker: Kernel Requirement**, http://docker.readthedocs.org/en/v0.5.3/installation/kernel/, 24 September 2014
 
-`last edited: 9/24/2014 2:04:19 PM`
+- **Hypervisor**, http://en.wikipedia.org/wiki/Hypervisor, 24 September 2014
+
+- **Htop**, http://en.wikipedia.org/wiki/Htop, 25 September 2014
+
+- **The Docker Guidebook**, http://kencochrane.net/blog/2013/08/the-docker-guidebook/#terminology, 25 September 2014
+
+`last edited: 9/25/2014 12:08:17 AM`
