@@ -54,7 +54,7 @@ Docker menjawab permasalahan tersebut dengan containernya. Aplikasi yang sudah d
 
 Pengujian akan dilakukan dengan metode simulasi (virtual mesin sebagai mesin host untuk Docker) dengan menginstall Web server pada 2 mesin virtual yang masing-masing menggunakan sistem operasi Linux yang berbeda distro (Ubuntu 14.04 dan CentOS 7). Web server akan diinstall dengan menggunakan container pada mesin Ubuntu, lalu *dockerized* web server tersebut akan dijalankan di mesin CentOS tanpa melakukan perubahan apapun pada mesin host ataupun container.
 
-#####3.1.2.2 Uji Kompabilitas Container Docker Terhadap Perbedaan Hardware
+#####3.1.2.2 Uji Kompabilitas Container Docker Terhadap Perbedaan *Environment* Host
 
 1.	Pentingnya Fleksibilitas Aplikasi
 
@@ -64,7 +64,9 @@ Pada kasus diatas, aplikasi harus mempunyai fleksibilitas tinggi agar mampu dija
 
 2.	Metode Pengujian
 
-Penulis akan menjalankan *Dockerized app* pada hardware yang berbeda, yaitu hardware Laptop dan virtual mesin yang menggunakan metode virtualisasi penuh (virtual hardware). Tentu saja ini merupakan *environemnt* (laptop dan mesin virtual) yang berbeda, karena virtual mesin yang menggunakan metode virtualisasi penuh bersifat independent dan terpisah dari mesin host. Pada realitasnya hal ini bisa terjadi pada saat aplikasi dijalankan oleh perusahaan yang melakukan konsolidasi server dengan virtualisasi seperti XEN dan VMWare.
+Perbedaan *environment* host yang dimaksudkan penulis meliputi; perbedaan pada layer hardware (virtual/fisik), konfigurasi sistem (Normal server/QA Server), lingkungan hosting (*Cloud*/lokal), dan lain-lain. Pengujian akan dilakukan dengan menjalankan *dockerized app* pada lingkungan host yang berbeda sesuai dengan kriteria di atas. Untuk membuktikan bahwa *dockerized app* bisa dijalankan pada host yang jenisnya berbeda.
+
+Penulis akan membangun *Dockerized app* pada virtual mesin yang menggunakan hypervisor tipe2, lalu aplikasi tersebut akan dijalankan pada hardware Laptop. Hal ini termasuk pada kriteria *environment* yang berbeda seperti disebutkan di atas, karena virtual mesin yang menggunakan metode virtualisasi penuh dengan teknologi hypervisor type 2 bersifat independent dan terpisah dari mesin host. Pada realitasnya hal ini bisa terjadi pada saat aplikasi dijalankan oleh perusahaan yang melakukan konsolidasi server dengan virtualisasi seperti VirtualBox dan VMWare.
 
 #####3.1.2.3 Uji Kompabilitas Container Docker Terhadap Perbedaan Versi Aplikasi
 
@@ -84,15 +86,29 @@ Sesuai skenerio dan metode yang dipaparkan di atas, jumlah variasi pengujian ada
 
 ####3.2.1	Pemilihan Software
 
-Untuk pengujian dengan variasi yang sudah disebutkan penulis memilih software aplikasi berbasis web yang masih banyak digunakan saat ini terutama di Indonesia seperti Apache server dan PHP yang dikemas dalam bentuk LAMP Server. Selain software yang digunakan untuk server, penulis juga menerangkan alasan penggunaan software yang akan pakai sebagai alat ukur pengujian untuk parameter penghematan sumber daya.
+Software yang digunakan dalam pengujian ini terdiri dari software yang digunakan sebagai; aplikasi contoh, software virtualisasi untuk uji komparasi, dan *tool* untuk pengukuran sumber daya.
 
-1.	Apache
-2.	PHP
+1.	Apache & PHP
+
+Apache adalah sebuah software HTTP server yang memainkan peran penting dalam perkembangan web (WWW), sedangkan PHP merupakan bahasa pemerograman *server-side* untuk aplikasi web itu sendiri. Kedua software untuk membangun sebuah web server ini sangat familiar dikalangan *developer* aplikasi berbasis web. Untuk itulah penulis memilih Apache dan PHP sebagai media uji pada pengujian ini. 
+
+Apache dan PHP ini akan digunakan untuk 3 variasi uji pada point uji kompabilitas container Docker. Versi PHP yang digunakan adalah PHP4 dan PHP5.   
+
+2.	VMware Workstation
+
+VMware Workstation adalah hypervisor yang berjalan di komputer x64. Memungkinkan pengguna untuk membuat mesin virtual dalam satu mesin fisik. MVware workstation merupakan softwre virtualisasi dengan hypervisor tipe 2. Dalam karya tulis ini VMware Workstation akan digunakan sebagai alat pengujian pada variasi uji uji kompabilitas terhadap perbadaan lingkungan host. 
+
+3.	VirtualBox
+
+Oracle VM VirtualBox merupakan paket software virtualisasi untuk komputer x86 dan AMD64/Intel64 dari Oracle Corporation sebagai bagian keluarga dari produk virtualisasi. VirtualBox sama seperti VMware, merupakan virtualisasi dengan menggunakan hypervisor tipe 2 yang menjalankan lapisan virtualisasi di atas komputer host. Pada pengujian ini VirtualBox akan digunakan sebagai alat komparasi dengan Docker pada pengujian pengehematan sumber daya.
+
 3.	Htop
+
+Htop adalah *system-monitor* dan *process-viewer* yang dibuat untuk Linux. Htop dirancang sebagai pilihan alternatif dari program Unix top. Htop menampilkan *update* proses yang berjalan pada komputer, secara normal diurutkan dengan banyaknya penggunaan CPU. Tidak seperti top, htop mendukung untuk menampilkan seluruh proses yang berjalan, tidak hanya menampilkan proses tertinggi dalam pemakaian sumber daya saja. Dalam pengujian ini htop akan digunakan sebagai alat pengukuran terhadap penggunaan sumber daya memory pada variasi uji efektifitas.
 
 ####3.2.2	Pemilihan Sistem Operasi
 
-Docker hanya bisa berjalan pada kernel yang sudah ditentukan yaitu 3.8 ke atas, namun sistem operasi yang memiliki kernel dibawahnya tetap bisa menjalankan Docker dengan melakukan upgrade kernel terlebih dahulu. Dengan pertimbangan agar pengujian dapat dilakukan secara efektif maka penulis akan menggunakan sistem operasi yang release dengan versi kernel terbaru (3.8 atau lebih). Dengan begitu penulis bisa fokus pada pengujian tanpa harus meningkatkan versi kernel dan pengujian bisa dilakukan dengan maksimal.
+Docker hanya bisa berjalan pada kernel yang sudah ditentukan yaitu 3.8 ke atas, namun sistem operasi yang memiliki kernel dibawahnya tetap bisa menjalankan Docker dengan melakukan upgrade kernel terlebih dahulu. Dengan pertimbangan agar pengujian dapat dilakukan secara efektif maka penulis akan menggunakan sistem operasi yang release dengan versi kernel 3.8 untuk distribusi Ubuntu dan kernel 2.6 pada CentOS. Dengan begitu penulis bisa fokus pada pengujian tanpa harus meningkatkan versi kernel dan pengujian bisa dilakukan dengan maksimal.
 
 Sistem operasi yang digunakan dapat dilihat pada tabel di bawa ini:
 
@@ -105,8 +121,8 @@ Sistem operasi yang digunakan dapat dilihat pada tabel di bawa ini:
 	<td>VARIASI UJI</td>
   </tr>
   <tr>
-    <td>CentOS 7</td>
-    <td>3.10.0-123.e17.x86_64</td> 
+    <td>CentOS 6.5/td>
+    <td>2.6.32-431.el6.x86_64</td> 
 	<td>CLI</td>
     <td>Host</td>
 	<td>Cross-platform Dependencies</td>
@@ -133,7 +149,7 @@ Sistem operasi yang digunakan dapat dilihat pada tabel di bawa ini:
 	<td>Penghematan Sumber Daya & Kompabilitas Perbedaan Hardware</td>
   </tr>
 <tr>
-    <td>Ubuntu 12.10</td>
+    <td>Ubuntu 12.04</td>
     <td>-</td> 
 	<td>CLI</td>
     <td>Container</td>
@@ -143,5 +159,24 @@ Sistem operasi yang digunakan dapat dilihat pada tabel di bawa ini:
 
 ###3.3	Topologi Jaringan
 
+####3.3.1 Docker Registry 
 
-`last edited: 9/24/2014 2:17:41 PM `
+Docker Registry adalah server (*public* atau private) tempat user Docker menyimpan repository untuk memudahkan berbagi image yang telah dibuatnya.  Dalam Docker registry ini juga terdapat image inti (tanpa *parent* image) yang dibuat secara official, dan juga terdapat image lain yang sangat berguna untuk dijadikan sebagai *base image* untuk aplikasi yang akan dibuat. Docker registry juga mempunyai mekanisme *versioning* seperti Github dengan cara memberikan tag yang berbeda untuk repository yang sama dengan perintah `username/nama_image:tag`, contohnya:
+
+	fahmpress/myapp:versi.1
+	fahmpress/myapp:versi.2
+Topologi jaringan yang dibahas pada tahap ini hanya menjelaskan hubungan host yang menjalankan Docker dengan Docker registry, yang secara implisit ini merupakan cara Docker secara *default* untuk memindahkan image yang sudah dibuat atau *dockerized app* dari satu host ke host yang lain (*shipping code*).
+
+![alt text](https://github.com/fahmpress/tugas-akhir/blob/master/images/gambar3.4.jpg "Gambar 3.3")
+
+Gambar 3.3 Docker Registry
+
+####3.3.1 Memindahkan Docker Image Melalui FTP
+
+Selain menggunakan Docker registry, image juga bisa dipindahkan dengan menyimpan image tersebut ke dalam bentuk .tar lalu memindahkannya melalui FTP ke host yang lain.
+
+![alt text](https://github.com/fahmpress/tugas-akhir/blob/master/images/gambar3.4.jpg "Gambar 3.4")
+
+Gambar 3.4 Memindahkan Image Melalui FTP
+
+`last edited: 9/25/2014 1:54:43 AM `
