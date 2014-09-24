@@ -23,7 +23,7 @@ Pertama kali, tidak ada apa-apa pada lapisan *read-write* paling atas, namun kap
 
 Mekanisme file system yang menjadi *back-end* container Docker ini disebut **Union File System**. Hal inilah yang menjadikan proses *deployment* container Docker menjadi efektif dalam hal penyimpanan dibanding dengan mesin virtual tradisional seperti VirtualBox, Docker tidak akan membuat snapshot dengan menyalin seluruh file sistem yang ada sebagai image, namun hanya menyalin lapisan perubahannya saja.
 
-2. Uji Efektifitas dengan Studi Komparasi
+2. Metode Uji dengan Studi Komparasi
 
 Sesuai paparan di atas terlihat perbedaan penggunaan penyimpanan Docker dengan mesin virtual tradisional. Dalam hal ini penulis akan melakukan pembuktian hipotesa tersebut dengan melakukan komparasi antara Docker dan VirtualBox, sehingga terlihat efektifitas Docker dibandingkan mesin virtual tradisional.
 
@@ -38,18 +38,35 @@ Gambar 3.2 Shared Host Kernel pada Docker
 
 Untuk pengujian ini akan dilakukan komparasi saat proses *deployment* mesin virtual (container) antara Docker dan VirtualBox. Docker dan Virtualbox akan diinstal pada mesin host dan sistem operasi yang sama. Setelah itu akan dijalankan beberapa mesin virtual dan container lalu akan dilihat penggunaan memorynya. Pengukuran memory akan menggunakan htop. Parameter uji dalam pengujian ini adalah besaran kenaikan memory yang digunakan saat menjalankan mesin virtual atau container.
 
-####3.1.2	Uji Kompabilitas Docker Terhadap Perbedaan Versi Aplikasi, Platform dan Hardware (Environment)
+####3.1.2	Uji Kompabilitas Docker
 
-Dalam pengembangan sebuah aplikasi berbasis web, environment tempat dimana aplikasi tersebut di-hosting akan menjadi masalah jika tidak sesuai dengan tempat aplikasi dikembangkan atau permasalahan pada software dependencies-nya. Bentuk permasalahan ini bisa bermacam-macam khususnya dalam sistem operasi linux, seperti; Many dependencies, long cains of dependencies, cross-platform dependencies dan conflicting dependencies. Aplikasi yang dibangun dengan banyak dukungan dependencies akan sulit untuk dijalankan pada environment yang berbeda, karena untuk menjalankan aplikasi tersebut akan dilakukan proses re-packaging dependencies-nya. Docker akan menjawab permasalahan pada proses pengembangan aplikasi web dengan metode tradisional tersebut, dan Docker menjadikan aplikasi yang dibangun menjadi portable. 
+Aplikasi yang sudah diinstall, dipaketkan dan dijalankan menggunakan container Docker disebut *Dockerized app*, Docker mengklaim sekali *developer* software membangun aplikasi dengan container, maka *dockerized app* bisa dijalankan di hampir semua *environment* seperti virtual mesin, Laptop, cloud, bare metal, dan lain-lain. Dalam hal ini penulis akan menguji hal tersebut dengan menjalankan *dockerized app* pada *environment* yang berbeda termasuk kompabilitas dengan lingkungan host yang mempunyai masalah *conflicting dependencies*.
 
-Contoh kasus adalah perbedaan environment pada developer, testing dan hosting aplikasi. Aplikasi yang dikembangkan harus mampu dijalankan di environment apapun di internet atau lokal, untuk melakukan itu, sysadmin harus menyiapkan environment dengan melakukan re-packaging dependencies untuk membuat aplikasi bisa berjalan, dan hal tentu saja bermasalah jika dependencies yang dibutuhkan oleh sebuah aplikasi sangat banyak. Contoh kasus lain semisal aplikasi web PHP yang berbeda versi dengan server PHP pada server, jika versi server PHP berbeda dengan versi aplikasi yang akan di-hosting, maka aplikasi harus upgrade versinya karena masalah kompabilitas. Pengujian ini dilakukan untuk membuktikan bahwa Docker bisa menjawab permasalahan ketergantungan terhadap dukungan versi aplikasi.
- 
-Docker mengklaim sekali developer membangun sebuah aplikasi maka Dockerized Apps hampir bisa dijalankan dimanapun, termasuk hardware server dan platform. Kompablitas pada lingkungan hardware sudah diuji coba pada point sebelumnya dengan menjalankan dockerized app pada PC dan Laptop. Untuk uji coba pada perbedaan platform akan dilakukan pada 2 mesin virtual yang berbeda sistem operasi. Dalam hal ini penulis menggunakan Ubuntu dan CentOS.
-Untuk variasi uji ini akan dibagi menjadi dua metode uji :
+#####3.1.2.1	Uji Kompabilitas Container Docker Terhadap Perbedaan Platform
 
-1.	Pengujian Cross-platform Dependencies, Penulis akan membuat sebuah Dockerized apps pada mesin Ubuntu, lalu aplikasi yang telah dibangun tersebut akan dijalankan pada mesin CentOS tanpa merubah apapun pada aplikasinya.
-2.	Pengujian Conflicting Dependencies, dengan menjalankan versi aplikasi yang berbeda pada mesin (server) yang sama. aplikasi yang akan digunakan untuk uji coba adalah PHP versi 4 dan 5 yang dipaketkan sebagai LAMP server.
-3.	Pengujian Many Dependencies, dengan menjalankan aplikasi yang telah dibuat pada PC akan diuji kompabilitasnya pada mesin (hardware) lain yang memiliki environment berbeda, dalam hal ini penulis menggunakan laptop tanpa harus melakukan pemaketan dependency atau konfigurasi lain.
+1. *Cross-platform Dependencies*
+
+Idealnya, developer aplikasi harus mampu membuat aplikasi yang fleksibel yang mampu dijalankan lintas platform untuk dapat menangani kasus seperti migrasi server ke server lain dengan sistem operasi yang berbeda. Namun pada kenyataannya hal ini sulit untuk diimplementasikan karena ketergantungan aplikasi terhadap suatu platform atau permasalahan yang biasa disebut *cross-platform dependencies*, dimana *sysadmin* harus mengkonfigurasi ulang *environment* baru untuk aplikasinya karena perbedaan sistem operasi server dan versi kernel.
+
+Docker menjawab permasalahan tersebut dengan containernya. Aplikasi yang sudah di-*package* menjadi *dockerized app* bersama semua *dependencies*-nya menggunakan container akan mampu berjalan pada platform yang menjalankan Docker (*enable dokcer engine*) tanpa harus merubah dan mengkonfigurasi apapun pada container ataupun mesin host.
+
+2.	Metode Pengujian
+
+Pengujian akan dilakukan dengan metode simulasi (virtual mesin sebagai mesin host untuk Docker) dengan menginstall Web server pada 2 mesin virtual yang masing-masing menggunakan sistem operasi Linux yang berbeda distro (Ubuntu 14.04 dan CentOS 7). Web server akan diinstall dengan menggunakan container pada mesin Ubuntu, lalu *dockerized* web server tersebut akan dijalankan di mesin CentOS tanpa melakukan perubahan apapun pada mesin host ataupun container.
+
+#####3.1.2.2 Uji Kompabilitas Container Docker Terhadap Perbedaan Hardware
+
+1.	Pentingnya Fleksibilitas Aplikasi
+
+Contoh kasus, dalam pengembangan aplikasi dengan skala *enterprise* seperti pada perusahaan bisnis, aplikasi yang dikembangkan sebagai servis yang dijalankan untuk *customers* harus memenuhi standar mutu dan spesifikasi yang dibutuhkan perusahaan. Untuk itu aplikasi yang telah dibangun oleh *developer* pada mesin lokalnya (semisal Laptop) akan diuji kelayakannya pada hardware Quality Assurance (QA Server). QA Server akan melakukan validitas untuk memastikan aplikasi tersebut memenuhi spesifikasi QC (*Quality Control*) dan menguji fitur serta fungsionalitasnya agar sesuai dengan sasaran pelaku bisnis. Setelah itu aplikasi akan dijalankan (di-*hosting*) pada hardware yang berbeda pula, misalnya Cloud (*Private/Public*), bare metal, virtual server, virtual mesin, dan sebagainya.
+
+Pada kasus diatas, aplikasi harus mempunyai fleksibilitas tinggi agar mampu dijalankan pada hardware yang berbeda, hal ini dimaksudkan untuk menghindari kesalahan atau error saat melakukan re-*packaging dependencies* dan konfigurasi yang dibutuhkan oleh aplikasi tersebut. Dengan Docker hal itu tidak akan menjadi permasalahan yang berarti selama hardware support untuk menjalankan Docker engine. Docker memastikan lingkungan host tidak akan berpengaruh pada container dan lingkungan container akan sama persis seperti saat dimana dia dibuat. Oleh karena itu *Dockerized app* yang sudah dibangun akan mampu dijalankan dimanapun yang menjalankan Docker engine tanpa harus melakukan perubahan apapun.
+
+2.	Metode Pengujian
+
+Penulis akan menjalankan *Dockerized app* pada hardware yang berbeda, yaitu hardware Laptop dan virtual mesin yang menggunakan metode virtualisasi penuh (virtual hardware). Tentu saja ini merupakan *environemnt* (laptop dan mesin virtual) yang berbeda, karena virtual mesin yang menggunakan metode virtualisasi penuh bersifat independent dan terpisah dari mesin host. Pada realitasnya hal ini bisa terjadi pada saat aplikasi dijalankan oleh perusahaan yang melakukan konsolidasi server dengan virtualisasi seperti XEN dan VMWare.
+
+#####3.1.2.3 Uji Kompabilitas Container Docker Terhadap Perbedaan Versi Aplikasi
 
 ###3.2	Pemilihan Software dan Sistem Operasi
 
