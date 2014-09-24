@@ -161,13 +161,13 @@ Sistem operasi yang digunakan dapat dilihat pada tabel di bawa ini:
 
 ####3.3.1 Docker Registry 
 
-Docker Registry adalah server (*public* atau private) tempat user Docker menyimpan repository untuk memudahkan berbagi image yang telah dibuatnya.  Dalam Docker registry ini juga terdapat image inti (tanpa *parent* image) yang dibuat secara official, dan juga terdapat image lain yang sangat berguna untuk dijadikan sebagai *base image* untuk aplikasi yang akan dibuat. Docker registry juga mempunyai mekanisme *versioning* seperti Github dengan cara memberikan tag yang berbeda untuk repository yang sama dengan perintah `username/nama_image:tag`, contohnya:
+Docker Registry adalah server (*public* atau private) tempat user Docker menyimpan repository untuk memudahkan *sharing* image yang telah dibuatnya.  Dalam Docker registry ini terdapat base image yang dibuat secara official, juga terdapat banyak image yang dibuat oleh pengguna Docker lain dan sangat membantu untuk dijadikan sebagai *base image* dalam proses pengembangan sebuah aplikasi. Docker registry juga mempunyai mekanisme *versioning* seperti Github dengan cara memberikan tag yang berbeda untuk repository yang sama dengan perintah `username/nama_image:tag`, contohnya:
 
 	fahmpress/myapp:versi.1
 	fahmpress/myapp:versi.2
 Topologi jaringan yang dibahas pada tahap ini hanya menjelaskan hubungan host yang menjalankan Docker dengan Docker registry, yang secara implisit ini merupakan cara Docker secara *default* untuk memindahkan image yang sudah dibuat atau *dockerized app* dari satu host ke host yang lain (*shipping code*).
 
-![alt text](https://github.com/fahmpress/tugas-akhir/blob/master/images/gambar3.4.jpg "Gambar 3.3")
+![alt text](https://github.com/fahmpress/tugas-akhir/blob/master/images/gambar3.3.jpg "Gambar 3.3")
 
 Gambar 3.3 Docker Registry
 
