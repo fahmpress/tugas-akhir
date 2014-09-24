@@ -31,3 +31,13 @@
 - **Docker**, https://github.com/docker/docker, 21 September 2014
 
 - **Dependency Hell**, http://en.wikipedia.org/wiki/Dependency_hell, 21 September 2014
+ 
+- **Quality Assurance**, http://en.wikipedia.org/wiki/Quality_assurance, 24 September 2014
+
+- **PHP5 and PHP4 Running on same Apache server**, http://digitalsandwich.com/php5-and-php4-running-on-same-apache-server/, 24 September 2014
+
+- **How to Easy PHP4+PHP5 side by side**, http://forums.cpanel.net/f402/how-easy-php4-php5-side-side-after-removal-php4-easyapache-304942.html, 24 September 2014
+
+- **Docker: Kernel Requirement**, http://docker.readthedocs.org/en/v0.5.3/installation/kernel/, 24 September 2014
+
+`last edited: 9/24/2014 2:04:19 PM`
