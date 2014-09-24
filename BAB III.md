@@ -179,4 +179,4 @@ Selain menggunakan Docker registry, image juga bisa dipindahkan dengan menyimpan
 
 Gambar 3.4 Memindahkan Image Melalui FTP
 
-`last edited: 9/25/2014 1:54:43 AM `
+`last edited: 9/25/2014 2:20:10 AM `
