@@ -166,3 +166,5 @@ Aplikasi yang berbeda akan bergantung pada versi yang berbeda dalam satu depende
 
 ####2.5.3	Custom Dependencies
 Seorang developer mungkin perlu menyiapkan sebuah versi custom dari ketergantungan aplikasinya. Beberapa sistem pemaketan bisa mengatasi versi custom dari sebuah dependency, namun yang lainnya tidak bisa dan mengatasi secara berbeda.
+
+`last updated: 9/25/2014 2:21:54 AM `
