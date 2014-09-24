@@ -1,4 +1,4 @@
-##BAB III - PERANCANGAN DAN IMPLEMENTASI
+##BAB III - RANCANGAN PENGUJIAN
 
 
 ###3.1	Skenario Pengujian 
@@ -6,7 +6,7 @@
 Pengujian dilakukan untuk menguji keunggulan Dokcer dalam hal proses *deployment* yang dianggap bisa mengatasi kekurangan pada virtualisasi sebelumnya menggunakan mesin virtual tradisional. Selain itu, pengujian dilakukan juga untuk menjawab permasalahan yang sering terjadi dalam pengembangan aplikasi web. Untuk menjawab hal tersebut, dalam penulisan ini akan dibahas mengenai skenerio dan metode pengujiannya. 
 
 ####3.1.1	Uji Efektifitas Docker Dalam Penggunaan Sumber Daya
-Docker merupakan Platform as a Service yang menggunakan teknologi virtualisasi yang lebih maju dari virtualisasi sebelumnya, sehingga virtualisasi sebelumnya disebut sebagai virtualisasi tradisional. Untuk itu, teknologi virtualisasi ini dijadikan sebagai bahan analisa untuk membandingkan kinerja teknologi virtualisasi Docker dengan virtualisasi tradisional. Untuk membandingkan kinerja dan penghematan sumber daya ini akan di ambil parameter uji sebagai berikut :
+Docker merupakan Platform as a Service yang menggunakan teknologi virtualisasi yang lebih maju dari virtualisasi sebelumnya, sehingga virtualisasi sebelumnya disebut sebagai virtualisasi tradisional. Untuk itu, teknologi virtualisasi ini dijadikan sebagai bahan analisa untuk membandingkan kinerja teknologi virtualisasi Docker dengan virtualisasi tradisional. Ada dua parameter yang akan digunakan sebagai variasi uji dalam pengehematan sumber daya, yaitu penghematan penyimpanan dan memory.
 
 #####3.1.1.1	Penghematan Penyimpanan (*Storage*)
 1. Union File System
@@ -68,23 +68,80 @@ Penulis akan menjalankan *Dockerized app* pada hardware yang berbeda, yaitu hard
 
 #####3.1.2.3 Uji Kompabilitas Container Docker Terhadap Perbedaan Versi Aplikasi
 
+1.	*Conflicting Dependencies*
+
+Beberapa aplikasi berbeda yang berjalan pada host yang sama kadang kali mendapat masalah ketika tergantung pada library yang sama namun versinya berbeda. Hal ini menjadikan aplikasi tidak bisa berjalan bersama-sama. Atau masalah pada perbedaan versi aplikasi itu sendiri. Penulis mengambil contoh kasus pengembangan web PHP, ketika sebuah perusahaan memiliki aplikasi pada *server farm*-nya dengan kode yang ditulis menggunakan PHP3 atau PHP4, lalu membuat aplikasi baru menggunakan PHP5 dengan alasan penggunaan fitur yang tidak terdapat pada versi sebelumnya. Solusinya adalah menjalankan server PHP pada mesin yang berbeda, atau melakukan upgrade pada kode programnya. Namun opsi pertama tidak bisa dilakukan jika perusahaan tidak ingin server PHP dijalankan pada mesin yang terpisah untuk alasan keamanan. Hal ini tentu saja menjadi masalah yang berhubungan dengan biaya dan waktu yang dapat merugikan perusahaan. 
+
+Dengan Docker, dapat dipastikan tidak terjadi konflik untuk menjalankan aplikasi yang berbeda versi untuk menjawab permasalahan diatas. Container Docker menjamin bahwa aplikasi yang berjalan di dalamnya diisolasi tanpa mempengaruhi lingkungan host juga container lain dan *zero overhead*, yang brarti terdapat keuntungan juga pada penggunaan sumber daya dibandingkan harus melakukan konsolidasi server menggunakan virtual mesin. 
+
+2.	Metode Pengujian
+
+Untuk metode pengujian penulis akan menjalankan aplikasi web PHP yang berbeda versi (PHP4 dan PHP5) pada mesin host yang sama.
+
 ###3.2	Pemilihan Software dan Sistem Operasi
 
-Sesuai skenerio pengujian di atas, jumlah variasi pengujian adalah 5 variasi pengujian. Untuk melakukan pengujian tersebut penulis menggunakan software dan sistem operasi Linux dengan distribusi yang berbeda.
+Sesuai skenerio dan metode yang dipaparkan di atas, jumlah variasi pengujian adalah 5 variasi uji. Untuk melakukan pengujian tersebut penulis menggunakan software dan sistem operasi Linux dengan distribusi yang berbeda.
 
 ####3.2.1	Pemilihan Software
 
-Untuk pengujian dengan variasi yang sudah disebutkan penulis memilih software aplikasi berbasis web yang masih banyak digunakan saat ini terutama di Indonesia seperti LAMP server yang digunakan untuk membuat server web.
+Untuk pengujian dengan variasi yang sudah disebutkan penulis memilih software aplikasi berbasis web yang masih banyak digunakan saat ini terutama di Indonesia seperti Apache server dan PHP yang dikemas dalam bentuk LAMP Server. Selain software yang digunakan untuk server, penulis juga menerangkan alasan penggunaan software yang akan pakai sebagai alat ukur pengujian untuk parameter penghematan sumber daya.
 
 1.	Apache
-2.	
+2.	PHP
+3.	Htop
 
 ####3.2.2	Pemilihan Sistem Operasi
 
-Docker hanya bisa berjalan pada kernel yang sudah ditentukan yaitu 3.8 ke atas, namun sistem operasi yang memiliki kernel dibawahnya tetap bisa menjalankan Docker dengan melakukan upgrade kernel terlebih dahulu. Dengan pertimbangan efektifitas dalam pengujian maka penulis akan menggunakan sistem operasi yang release dengan versi kernel terbaru (3.8 atau lebih). Dengan begitu penulis bisa fokus pada pengujian tanpa harus meningkatkan versi kernel dan pengujian bisa dilakukan dengan maksimal.
-Pengecualian untuk variasi uji penghematan memory dan penyimpanan, penulis akan membandingkan kinerja dua mesin menggunakan sistem operasi Proxmox dengan versi kernel 2.6, penulis akan membuat 2 mesin virtual dengan sistem operasi Proxmox dengan versi kernel yang berbeda.
+Docker hanya bisa berjalan pada kernel yang sudah ditentukan yaitu 3.8 ke atas, namun sistem operasi yang memiliki kernel dibawahnya tetap bisa menjalankan Docker dengan melakukan upgrade kernel terlebih dahulu. Dengan pertimbangan agar pengujian dapat dilakukan secara efektif maka penulis akan menggunakan sistem operasi yang release dengan versi kernel terbaru (3.8 atau lebih). Dengan begitu penulis bisa fokus pada pengujian tanpa harus meningkatkan versi kernel dan pengujian bisa dilakukan dengan maksimal.
+
+Sistem operasi yang digunakan dapat dilihat pada tabel di bawa ini:
+
+<table>
+  <tr>
+    <td>SISTEM OPERASI</td>
+    <td>VERSI KERNEL</td> 
+    <td>USER INTERFACE</td>
+	<td>GUEST/HOST</td>
+	<td>VARIASI UJI</td>
+  </tr>
+  <tr>
+    <td>CentOS 7</td>
+    <td>3.10.0-123.e17.x86_64</td> 
+	<td>CLI</td>
+    <td>Host</td>
+	<td>Cross-platform Dependencies</td>
+  </tr>
+<tr>
+    <td>Ubuntu 14.04 LTS Server</td>
+    <td>3.13.0-32-generic</td> 
+	<td>CLI</td>
+    <td>Host</td>
+	<td>Cross-platform Dependencies & Conflicting Dependencies</td>
+  </tr>
+<tr>
+    <td>Ubuntu 14.04 LTS Desktop</td>
+    <td>3.13.0-32-generic</td> 
+	<td>Desktop</td>
+    <td>Host</td>
+	<td>Penghematan Sumber Daya & Kompabilitas Perbedaan Hardware</td>
+  </tr>
+<tr>
+    <td>Ubuntu 14.04.x (Latest)</td>
+    <td>-</td> 
+	<td>CLI</td>
+    <td>Container</td>
+	<td>Penghematan Sumber Daya & Kompabilitas Perbedaan Hardware</td>
+  </tr>
+<tr>
+    <td>Ubuntu 12.10</td>
+    <td>-</td> 
+	<td>CLI</td>
+    <td>Container</td>
+	<td>Conflicting Dependencies</td>
+  </tr>
+</table>
 
 ###3.3	Topologi Jaringan
 
 
-`last edited: 9/23/2014 2:04:01 PM`
+`last edited: 9/24/2014 2:17:41 PM `
