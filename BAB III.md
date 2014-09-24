@@ -167,7 +167,7 @@ Docker Registry adalah server (*public* atau private) tempat user Docker menyimp
 	fahmpress/myapp:versi.2
 Topologi jaringan yang dibahas pada tahap ini hanya menjelaskan hubungan host yang menjalankan Docker dengan Docker registry, yang secara implisit ini merupakan cara Docker secara *default* untuk memindahkan image yang sudah dibuat atau *dockerized app* dari satu host ke host yang lain (*shipping code*).
 
-![alt text](https://github.com/fahmpress/tugas-akhir/blob/master/images/gambar3.4.jpg "Gambar 3.3")
+![alt text](https://github.com/fahmpress/tugas-akhir/blob/master/images/gambar3.3.jpg "Gambar 3.3")
 
 Gambar 3.3 Docker Registry
 
