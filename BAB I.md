@@ -23,8 +23,8 @@ Berdasarkan pemaparan diatas maka penulis mengidentifikasi beberapa rumusan masa
 1. Bagaimana implementasi pengembangan aplikasi berbasis web menggunakan linux container Docker?
 2. Bagaimana efektifitas container Docker dalam penggunaan sumber daya penyimpanan dan memory dibandingkan dengan mesin virtual tradisional?
 3. Bagaimana kompabilitas container Docker untuk menjalankan aplikasi yang telah dibangun pada platform yang berbeda sebagai cara untuk mengatasi permasalahan cross-platform dependencies?
-4. Bagaimana komplabilitas container Docker untuk menjalankan aplikasi yang berbeda versi dalam satu mesin sebagai cara untuk mengatasi permasalahan conflicting dependencies?
-5. Bagaimana kompabilitas container Docker untuk menjalankan aplikasi yang telah dibangun pada lingkungan *host* yang berbeda?
+4. Bagaimana kompabilitas container Docker untuk menjalankan aplikasi yang telah dibangun pada lingkungan *host* atau hardware yang berbeda?
+5. Bagaimana komplabilitas container Docker untuk menjalankan aplikasi yang berbeda versi dalam satu mesin sebagai cara untuk mengatasi permasalahan conflicting dependencies?
 
 ###1.3	Batasan Masalah
  
@@ -59,9 +59,11 @@ Sistematika penulisan tugas akhir yang digunakan adalah sebagai berikut :
 Dalam bab ini penulis menjelaskan tentang Latar belakang, identifikasi/perumusan masalah dan batasan masalah, tujuan dan manfaat, metode penulisan dan sistematika penulisan.
 #####BAB II LANDASAN TEORI
 Dalam bab ini penulis menjelaskan mengenai teori-teori yang berkaitan dengan judul tugas akhir ini.
-#####BAB III PERANCANGAN DAN IMPLEMENTASI PENGUJIAN
+#####BAB III RANCANGAN PENGUJIAN
 Dalam bab ini akan menjelaskan mengenai perancangan serta implementasian  dalam penggunaan Docker sebagai Platform as a Service.
-#####BAB IV PENGUJIAN KOMPABILITAS DAN EFEKTIFITAS DOCKER
+#####BAB IV IMPLEMENTASI PENGUJIAN
 Dalam bab ini menjelaskan mengenai pengujian kompabilitas Dockerized App saat dijalankan di lingkungan yang berbeda, dan efektifitas penggunaan sumber daya penyimpanan dan memory dalam proses deployment sebuah aplikasi berbasis web.
 #####BAB V KESIMPULAN DAN SARAN
 Dalam bab ini akan dibahas mengenai kesimpulan yang merupakan hasil dari implementasi dan saran-saran dari penulis sebagai bahan pertimbangan untuk implementasi Docker sebagai Platform as a Service.
+
+`last edited: 9/24/2014 2:18:00 PM `
