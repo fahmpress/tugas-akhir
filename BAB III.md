@@ -25,7 +25,7 @@ Mekanisme file system yang menjadi *back-end* container Docker ini disebut **Uni
 
 2. Metode Uji dengan Studi Komparasi
 
-Sesuai paparan di atas terlihat perbedaan penggunaan penyimpanan Docker dengan mesin virtual tradisional. Dalam hal ini penulis akan melakukan pembuktian hipotesa tersebut dengan melakukan komparasi antara Docker dan VirtualBox, sehingga terlihat efektifitas Docker dibandingkan mesin virtual tradisional.
+Sesuai paparan di atas terlihat perbedaan penggunaan penyimpanan Docker dengan mesin virtual tradisional. Dalam hal ini penulis akan melakukan pembuktian terhadap teori tersebut dengan melakukan komparasi antara Docker dan VirtualBox, sehingga terlihat efektifitas Docker dibandingkan mesin virtual tradisional.
 
 Untuk malakukan pengujian tersebut penulis akan menginstall Docker dan VirtualBox pada mesin host dan sistem operasi yang sama secara bergantian agar hardware yang digunakan identik dan sama persis, hal ini dilakukan atas pertimbangan integritas pengujian. Lalu menjalankan satu mesin virtual (container) dan melakukan 2 proses yang masing-masing proses akan diambil snapshot-nya. Pengukuran penggunaan *storage* diambil sebelum melakukan snapshot dan setelah pengambilan snapshot, lalu dibandingkan berapa peningkatan *storage* yang digunakan antara virtualbox dan Docker. Proses ini dilakukan bergantian antara Virtualbox dan Docker. Parameter uji yang digunakan dalam pengujian ini adalah besaran penggunaan penyimpanan (*storage*).
 
