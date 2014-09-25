@@ -287,13 +287,13 @@ Secara *default* container yang sedang berjalan tidak bisa diakses dari luar, ag
 
     # docker run -p 8888:80 -d fahmpress/apache /usr/sbin/apache2ctl -D FOREGROUND
     
-Perintah di atas secara explisit memerintahkan Docker untuk menjalankan apache daemon di dalam container dan memetakan port 80 pada container pada port 8888 di mesin host, sehingga web server apache bisa diakses dari luar container bahkan dari luar mesin host.
+Perintah di atas secara explisit memerintahkan Docker untuk menjalankan apache daemon di dalam container dan memetakan port 80 di container pada port 8888 di mesin host, sehingga web server apache bisa diakses dari luar container bahkan dari luar mesin host.
 
 Gambar 3.19 Mengakses apache web server dari mesin host 
 
-####3.5.2 *Dockerizing* Aplikasi Menggunakan Dockerfile
+####3.5.2 *Dockerizing* Apache Daemon Menggunakan Dockerfile
 
-*Deployment* container dengan dockerfile memungkinkan proses secara terdokumentasi dan mudah di maintenance. Untuk menggunakan dockerfile buat file dengan nama `Dockerfile` lalu masukan perintah yang sesuai dengan langkah instalasi apache. Syntax yang digunakan dalam dockerfile harus *valid* dan dikenali oleh dockerfile seperti FROM, MAINTENER, RUN, CMD dan lain-lain. Penulis menggunakan editor nano untuk membuat Dockerfile dengan perintah `nano Dockerfile`, lalu masukan skrip berikut:
+*Deployment* container dengan dockerfile memungkinkan proses secara terdokumentasi dan mudah di *maintenance*. Untuk menggunakan dockerfile buat file dengan nama `Dockerfile` lalu masukan perintah yang sesuai dengan langkah instalasi apache. Syntax yang digunakan dalam dockerfile harus *valid* dan dikenali oleh proses `docker build` seperti FROM, MAINTENER, RUN, CMD dan lain-lain. Penulis menggunakan editor nano untuk membuat Dockerfile dengan perintah `nano Dockerfile`, lalu menulis skrip seperti berikut:
 
     FROM ubuntu:latest
     MAINTAINER Fahmi <persada.fahmi@gmail.com>
