@@ -46,4 +46,8 @@
 
 - **The Docker Guidebook**, http://kencochrane.net/blog/2013/08/the-docker-guidebook/#terminology, 25 September 2014
 
-`last edited: 9/25/2014 12:08:17 AM`
+- **Installation on Ubuntu**, http://docs.docker.com/installation/ubuntulinux/, 25 September 2014
+
+- **Docker Command Line**, http://docs.docker.com/reference/commandline/cli/ 25 September 2014
+
+- **Dockerizing Applications: A "Hello World"**, http://docs.docker.com/userguide/dockerizing/, 25 September 2014
