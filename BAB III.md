@@ -1,7 +1,7 @@
 ##BAB III - RANCANGAN PENGUJIAN
 
 
-###3.1	Skenario Pengujian 
+###3.1	Skenario Pengujian
 
 Pengujian dilakukan untuk menguji keunggulan Dokcer dalam hal proses *deployment* yang dianggap bisa mengatasi kekurangan pada virtualisasi sebelumnya menggunakan mesin virtual tradisional. Selain itu, pengujian dilakukan juga untuk menjawab permasalahan yang sering terjadi dalam pengembangan aplikasi web. Untuk menjawab hal tersebut, dalam penulisan ini akan dibahas mengenai skenerio dan metode pengujiannya. 
 
@@ -118,35 +118,28 @@ Sistem operasi yang digunakan dapat dilihat pada tabel di bawa ini:
     <td>VERSI KERNEL</td> 
     <td>USER INTERFACE</td>
 	<td>GUEST/HOST</td>
-	<td>VARIASI UJI</td>
+	<td>PENGGUNAAN</td>
   </tr>
   <tr>
-    <td>CentOS 6.5/td>
+    <td>CentOS 6.5</td>
     <td>2.6.32-431.el6.x86_64</td> 
 	<td>CLI</td>
     <td>Host</td>
-	<td>Cross-platform Dependencies</td>
+	<td>Pengujian Cross-platform Dependencies</td>
   </tr>
 <tr>
-    <td>Ubuntu 14.04 LTS Server</td>
-    <td>3.13.0-32-generic</td> 
-	<td>CLI</td>
-    <td>Host</td>
-	<td>Cross-platform Dependencies & Conflicting Dependencies</td>
-  </tr>
-<tr>
-    <td>Ubuntu 14.04 LTS Desktop</td>
-    <td>3.13.0-32-generic</td> 
+    <td>Ubuntu 14.04 LTS</td>
+    <td>3.13.0-24-generic</td> 
 	<td>Desktop</td>
     <td>Host</td>
-	<td>Penghematan Sumber Daya & Kompabilitas Perbedaan Hardware</td>
+	<td>Uji Efektifitas dan Kompabilitas</td>
   </tr>
 <tr>
     <td>Ubuntu 14.04.x (Latest)</td>
     <td>-</td> 
 	<td>CLI</td>
     <td>Container</td>
-	<td>Penghematan Sumber Daya & Kompabilitas Perbedaan Hardware</td>
+	<td>Uji Efektifitas dan Kompabilitas</td>
   </tr>
 <tr>
     <td>Ubuntu 12.04</td>
