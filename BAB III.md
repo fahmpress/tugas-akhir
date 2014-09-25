@@ -123,7 +123,7 @@ Sistem operasi yang digunakan dapat dilihat pada tabel di bawa ini:
   <tr>
     <td>CentOS 6.5</td>
     <td>2.6.32-431.el6.x86_64</td> 
-	<td>CLI</td>
+	<td>Desktop</td>
     <td>Host</td>
 	<td>Pengujian Cross-platform Dependencies</td>
   </tr>
@@ -133,6 +133,13 @@ Sistem operasi yang digunakan dapat dilihat pada tabel di bawa ini:
 	<td>Desktop</td>
     <td>Host</td>
 	<td>Uji Efektifitas dan Kompabilitas</td>
+  </tr>
+<tr>
+    <td>Ubuntu 14.04 LTS</td>
+    <td>3.13.0-32-generic</td> 
+	<td>CLI</td>
+    <td>Guest</td>
+	<td>Uji Kompabilitas Terhadap Perbedaan Lingkungan Host</td>
   </tr>
 <tr>
     <td>Ubuntu 14.04.x (Latest)</td>
