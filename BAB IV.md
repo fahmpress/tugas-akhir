@@ -1,20 +1,18 @@
-##BAB IV - IMPLEMENTASI DAN PENGUJIAN
+##BAB IV - PENGUJIAN EFEKTIFITAS DAN KOMPABILITAS DOCKER CONTAINER
 
-###4.1  Uji Efektifitas Docker 
-####4.1.1   Instalasi Virtualbox dan Docker
+###4.1 Pengujian Efektifitas Docker
+####4.1.1 Pengujian Efektifitas Docker Dalam Penggunaan Penyimpanan (*Storage*) 
+...
 
-Sistem operasi yang digunakan untuk pengujian ini adalah Ubuntu 14.04 LTS Server. Install VirtualBox via terminal dengan menggunakan perintah:
-    
-    apt-get install virtualbox
-atau mendownload pada halaman resmi virtualbox dan menginstallnya secara manual. Dalam hal ini penulis mendownload virtualbox dan menginstalnya secara manual, untuk mendapatkan virtualbox dengan versi terakhir. Setelah download selesai, install virtualbox dengan perintah `dpkg -i /direktori/installer.deb`:
+####4.1.2 Pengujian Efektifitas Docker Dalam Penggunaan Memory
+...
 
-    dpkg -i /Downloads/virtualbox-4.3_4.3.16-95972~Ubuntu~raring_amd64.deb
+###4.2 Pengujian Kompabilitas Docker 
+####4.2.1 Pengujian Kompabilitas Docker Terhadap Perbedaan Platform
+...
 
-Setelah instalasi virtualbox selesai, buat virtual mesin dengan mengklik `new` pada menu lalu beri nama dan pilih sistem operasi yang akan diinstall.
+####4.2.2 Pengujian Kompabilitas Docker Terhadap Perbedaan *Environment* Host
+...
 
-Gambar 4.2 Membuat mesin virtual baru
-
-Langkah selanjutnya menentukan besaran memory yang akan digunakan oleh mesin virtual. Dalam hal ini penulis menggunakan memory sebesar 256 MB. Sumber daya diambil sekecil mungkin untuk meminimalkan *overhead* pada mesin host.
-
-Gambar 4.3 Menentukan besaran memory
-
+####4.2.3 Pengujian Kompabilitas Docker Terhadap Perbedaan Versi Aplikasi 
+...
