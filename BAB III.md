@@ -29,10 +29,14 @@ Sesuai paparan di atas terlihat perbedaan penggunaan penyimpanan Docker dengan m
 
 Untuk malakukan pengujian tersebut penulis akan menginstall Docker dan VirtualBox pada mesin host dan sistem operasi yang sama secara bergantian agar hardware yang digunakan identik dan sama persis, hal ini dilakukan atas pertimbangan integritas pengujian. Lalu menjalankan satu mesin virtual (container) dan melakukan 2 proses yang masing-masing proses akan diambil snapshot-nya. Parameter uji yang digunakan dalam pengujian ini adalah besaran penggunaan penyimpanan (*storage*)
 
+![alt text](https://github.com/fahmpress/tugas-akhir/blob/master/images/gambar3.2.png "Gambar 3.2")
+
+Gambar 3.2 Metode Pengujian
+
 #####3.1.1.2.	Penghematan Memory
 Dalam proses deployment-nya Docker container menggunakan shared kernel dari mesin host tanpa ada perantara lapisan virtualisasi seperti *hypervisor*, maka proses menjadi lebih ringan sehingga bisa menghemat memory dan overhead pada mesin host (*zero overhead*) sehingga memungkinkan untuk menjalankan banyak container dalam satu mesin, berbeda dengan virtualisasi tradisional yang menggunakan *hypervisor* dan kernel tersendiri dari mesin host.
 
-![alt text](https://github.com/fahmpress/tugas-akhir/blob/master/images/gambar3.2.jpg "Gambar 3.2")
+![alt text](https://github.com/fahmpress/tugas-akhir/blob/master/images/gambar3.2.jpg "Gambar 3.3")
 
 Gambar 3.2 Shared Host Kernel pada Docker
 
