@@ -27,7 +27,7 @@ Mekanisme file system yang menjadi *back-end* container Docker ini disebut **Uni
 
 Sesuai paparan di atas terlihat perbedaan penggunaan penyimpanan Docker dengan mesin virtual tradisional. Dalam hal ini penulis akan melakukan pembuktian hipotesa tersebut dengan melakukan komparasi antara Docker dan VirtualBox, sehingga terlihat efektifitas Docker dibandingkan mesin virtual tradisional.
 
-Untuk malakukan pengujian tersebut penulis akan menginstall Docker dan VirtualBox pada mesin host dan sistem operasi yang sama secara bergantian agar hardware yang digunakan identik dan sama persis, hal ini dilakukan atas pertimbangan integritas pengujian. Lalu menjalankan satu mesin virtual (container) dan melakukan 2 proses yang masing-masing proses akan diambil snapshot-nya. Parameter uji yang digunakan dalam pengujian ini adalah besaran penggunaan penyimpanan (*storage*)
+Untuk malakukan pengujian tersebut penulis akan menginstall Docker dan VirtualBox pada mesin host dan sistem operasi yang sama secara bergantian agar hardware yang digunakan identik dan sama persis, hal ini dilakukan atas pertimbangan integritas pengujian. Lalu menjalankan satu mesin virtual (container) dan melakukan 2 proses yang masing-masing proses akan diambil snapshot-nya. Pengukuran penggunaan *storage* diambil sebelum melakukan snapshot dan setelah pengambilan snapshot, lalu dibandingkan berapa peningkatan *storage* yang digunakan antara virtualbox dan Docker. Proses ini dilakukan bergantian antara Virtualbox dan Docker. Parameter uji yang digunakan dalam pengujian ini adalah besaran penggunaan penyimpanan (*storage*).
 
 ![alt text](https://github.com/fahmpress/tugas-akhir/blob/master/images/gambar3.2.png "Gambar 3.2")
 
