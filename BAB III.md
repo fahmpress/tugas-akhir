@@ -1,4 +1,4 @@
-##BAB III - RANCANGAN PENGUJIAN
+##BAB III -  PERANCANGAN DAN IMPLEMENTASI
 
 
 ###3.1	Skenario Pengujian
@@ -36,7 +36,7 @@ Gambar 3.2 Metode Pengujian
 #####3.1.1.2.	Penghematan Memory
 Dalam proses deployment-nya Docker container menggunakan shared kernel dari mesin host tanpa ada perantara lapisan virtualisasi seperti *hypervisor*, maka proses menjadi lebih ringan sehingga bisa menghemat memory dan overhead pada mesin host (*zero overhead*) sehingga memungkinkan untuk menjalankan banyak container dalam satu mesin, berbeda dengan virtualisasi tradisional yang menggunakan *hypervisor* dan kernel tersendiri dari mesin host.
 
-![alt text](https://github.com/fahmpress/tugas-akhir/blob/master/images/gambar3.2.jpg "Gambar 3.3")
+![alt text](https://github.com/fahmpress/tugas-akhir/blob/master/images/gambar3.3.jpg "Gambar 3.3")
 
 Gambar 3.2 Shared Host Kernel pada Docker
 
@@ -171,16 +171,151 @@ Docker Registry adalah server (*public* atau private) tempat user Docker menyimp
 	fahmpress/myapp:versi.2
 Topologi jaringan yang dibahas pada tahap ini hanya menjelaskan hubungan host yang menjalankan Docker dengan Docker registry, yang secara implisit ini merupakan cara Docker secara *default* untuk memindahkan image yang sudah dibuat atau *dockerized app* dari satu host ke host yang lain (*shipping code*).
 
-![alt text](https://github.com/fahmpress/tugas-akhir/blob/master/images/gambar3.3.jpg "Gambar 3.3")
+![alt text](https://github.com/fahmpress/tugas-akhir/blob/master/images/gambar3.4.jpg "Gambar 3.4")
 
-Gambar 3.3 Docker Registry
+Gambar 3.4 Docker Registry
 
 ####3.3.2 Memindahkan Docker Image Melalui FTP
 
 Selain menggunakan Docker registry, image juga bisa dipindahkan dengan menyimpan image tersebut ke dalam bentuk .tar lalu memindahkannya melalui FTP ke host yang lain.
 
-![alt text](https://github.com/fahmpress/tugas-akhir/blob/master/images/gambar3.4.jpg "Gambar 3.4")
+![alt text](https://github.com/fahmpress/tugas-akhir/blob/master/images/gambar3.5.jpg "Gambar 3.5")
 
-Gambar 3.4 Memindahkan Image Melalui FTP
+Gambar 3.5 Memindahkan Image Melalui FTP
 
-`last edited: 9/25/2014 2:20:10 AM `
+###3.4 Instalasi VirtualBox, Docker dan Htop
+####3.4.1 Instalasi VirtualBox dan Membuat Mesin Virtual
+
+Sistem operasi yang digunakan untuk pengujian ini adalah Ubuntu 14.04 LTS Server. Install VirtualBox via terminal dengan menggunakan perintah:
+    
+    $ sudo apt-get install virtualbox
+atau mendownload pada halaman resmi virtualbox https://www.virtualbox.org/wiki/Downloads dan menginstallnya secara manual. Dalam hal ini penulis mendownload virtualbox dan menginstalnya secara manual, untuk mendapatkan virtualbox dengan versi terakhir. Setelah download selesai, install virtualbox dengan perintah `dpkg -i /direktori/installer.deb`:
+
+    $ sudo dpkg -i /Downloads/virtualbox-4.3_4.3.16-95972~Ubuntu~raring_amd64.deb
+
+Setelah instalasi virtualbox selesai, buat virtual mesin dengan mengklik `new` pada menu lalu beri nama dan pilih sistem operasi yang akan diinstall.
+
+Gambar 3.6 Membuat mesin virtual baru
+
+Langkah selanjutnya menentukan besaran memory yang akan digunakan oleh mesin virtual. Dalam hal ini penulis menggunakan memory sebesar 256 MB. Sumber daya diambil sekecil mungkin untuk meminimalkan *overhead* pada mesin host.
+
+Gambar 3.7 Menentukan besaran memory
+
+Selanjutnya buat hardisk virtual dengan format VDI (*VirtualBox Disk Image*), dan memilih opsi *Dynamicallly allocated* agar penggunaan virtual hardisk efektif, ukurannya sesuai dengan besaran hardisk yang digunakan. Besaran hardisknya penulis menggunakan ukuran *default* yang diberikan oleh virtualbox yaitu 8 GB.
+
+Gambar 3.8 Menentukan besaran hardisk virtual
+
+Agar mesin virtual mendapat koneksi internet, adapternya harus dikonfigurasi mejadi *bridge* ke adapter fisik pada mesin host.
+
+Gambar 3.9 Setingan jaringan sebagai *bridge*
+
+Setelah itu jalankan mesin virtual dan pilih ISO file sistem operasi yang akan diinstall.
+
+Gambar 3.10 ISO installer sistem operasi
+
+Dalam proses penginstalan sistem operasi, instalkan Open SSH server saat pemilihan paket software, untuk memudahkan mengakses terminal secara *remote* nantinya. 
+
+####3.4.2 Instalasi Docker dan Menyiapkan Docker Image
+
+Cara instalasi Docker berbeda pada tiap sistem operasi. Dalam hal ini penulis menggunakan sistem operasi Ubuntu 14.04 LTS, instalasi dilakukan dengan perintah berikut:
+
+    $ sudo apt-get update
+    $ sudo apt-get install docker.io
+    $ sudo ln -sf /usr/bin/docker.io /usr/local/bin/docker
+    $ sudo sed -i '$acomplete -F _docker docker' /etc/bash_completion.d/docker.io
+
+cek versi Docker dengan perintah `docker version`.
+
+Gambar 3.11 Docker versi 1.0.1
+
+Jika versi Docker yang diinstall dari repository Ubuntu tidak update, install Docker dari repository Docker, sebelumnya pastikan sistem APT mendukung `https`. Untuk menginstallnya, tambahkan repository Docker pada `apt-source list`, lakukan update lalu install paket `lxc-docker`.
+
+    $ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 36A1D7869245C8950F966E92D8576A8BA88D21E9
+    $ sudo sh -c "echo deb https://get.docker.io/ubuntu docker main\ > /etc/apt/sources.list.d/docker.list"
+    $ sudo apt-get update
+    $ sudo apt-get install lxc-docker
+Cek kembali versi Docker untuk memastikan Docker yang diinstall merupakan *latest stable version*.
+
+Gambar 3.12 Docker versi 1.2.0
+
+Setelah itu ketikan perintah berikut untuk mencoba menjalankan container Docker:
+
+    $ sudo docker run -i -t ubuntu /bin/bash
+Perintah di atas akan menjalankan container dengan *base image* Ubuntu. Docker akan mencari image ubuntu secara lokal pada Docker host, jika image belum ada Docker akan otomatis mendownload image ke registry public.
+
+Gambar 3.13 Download image ubuntu dari *public registry*
+
+Untuk mendownload image tertentu gunakan perintah `docker pull <nama image>`. Setelah mengetikan perintah di atas, terminal akan berpindah ke terminal container yang dijalankan. Ketik `exitg` untuk keluar dari container. Lalu ketikan perintah `docker images` untuk melihat image apa saja yang ada pada repository lokal kita.
+
+Gambar 3.14 Image Docker
+
+####3.4.3 Instalasi Htop
+
+Untuk instalasi Htop gunakan perintah berikut pada terminal:
+
+    apt-get install htop
+ketikan perintah `htop` pada terminal untuk memastikan instalasi htop berhasil.
+
+Gambar 3.15 Htop
+
+###3.5 *Dockerizing* Aplikasi Dengan Container Docker
+
+Ada dua cara dalam implementasi pengembangan sebuah aplikasi web dengan menggunakan container Docker, secara manual dan menggunakan skrip. *Deployment* secara manual artinya kita membangun aplikasi dengan langkah-langkah yang kita lakukan di dalam container melalui terminal secara langsung. Sedangkan *deployment* menggunakan skrip merupakan sebuah proses otomasi (*automate build*), hal ini dilakukan dengan skrip yang disebut Dockerfile.
+
+####3.5.1 *Dockerizing* Apache Daemon
+
+Penulis akan membuat aplikasi web server apache menggunakan container Docker untuk pengujian yang akan dibahas pada bab selanjutnya. Base image yang digunakan adalah ubuntu:latest. Pertama jalankan container ubuntu dengan perintah berikut:
+
+    # docker run -i -t ubuntu /bin/bash
+
+perintah di atas akan merubah posisi terminal dari host ke dalam container. 
+
+Gambar 3.16 Menjalankan container Docker
+
+*Flag* `-i` mengizinkan untuk membuat koneksi interaktif, *flag* `t` memberikan sebuah pseudo-tty atau terminal di dalam container. Sedangkan `/bin/bash` adalah perintah untuk menjalankan *bash shell* di dalam container. Untuk melihat container yang sedang berjalan gunakan perintah `Docker ps` pada terminal yang lain.
+
+Gambar 3.17 Melihat container yang sedang berjalan
+Setelah itu lakukan instalasi apache di dalam container.
+
+    # apt-get update
+    # apt-get -y install apache2
+Sampai tahap ini docker apache web server belum bisa diakses dari luar container. Gunakan perintah `Docker Commit *<container id>* *<username/nama_image>*` untuk menyimpan perubahan pada container. Username yang digunakan disini adalah username yang digunakan untuk mengakses Docker index atau registry public. Username bisa didapatkan dengan mendaftar di halaman resmi Docker.
+
+Gambar 3.18 Menyimpan container ke dalam bentuk image
+
+Secara *default* container yang sedang berjalan tidak bisa diakses dari luar, agar web server bisa diakses dari luar adalah dengan menggunakan *mapping* port container ke port mesin host atau istilah yang sering digunakan *Expose port*. Untuk menjalankan apache web server yang sudah dibuat sebelumnya gunakan perintah berikut:
+
+    # docker run -p 8888:80 -d fahmpress/apache /usr/sbin/apache2ctl -D FOREGROUND
+    
+Perintah di atas secara explisit memerintahkan Docker untuk menjalankan apache daemon di dalam container dan memetakan port 80 pada container pada port 8888 di mesin host, sehingga web server apache bisa diakses dari luar container bahkan dari luar mesin host.
+
+Gambar 3.19 Mengakses apache web server dari mesin host 
+
+####3.5.2 *Dockerizing* Aplikasi Menggunakan Dockerfile
+
+*Deployment* container dengan dockerfile memungkinkan proses secara terdokumentasi dan mudah di maintenance. Untuk menggunakan dockerfile buat file dengan nama `Dockerfile` lalu masukan perintah yang sesuai dengan langkah instalasi apache. Syntax yang digunakan dalam dockerfile harus *valid* dan dikenali oleh dockerfile seperti FROM, MAINTENER, RUN, CMD dan lain-lain. Penulis menggunakan editor nano untuk membuat Dockerfile dengan perintah `nano Dockerfile`, lalu masukan skrip berikut:
+
+    FROM ubuntu:latest
+    MAINTAINER Fahmi <persada.fahmi@gmail.com>
+
+    RUN apt-get update && apt-get -y install apache2 && apt-get clean
+
+    EXPOSE 80
+
+    CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
+
+Untuk menjalankan dockerfile gunakan perintah berikut pada direktori dimana dockerfile berada:
+    
+    # docker build -t fahmpress/apache2 .
+
+Gambar 3.20 Membangun apache web server menggunakan dockerfile
+
+Cek image yang telah dibuat dengan dockerfile tersebut, lalu jalankan dengan perintah:
+
+    docker run -p 80:80 -d fahmpress/apache2
+
+Gambar 3.21 Image yang telah dibuat dengan menggunakan dockerfile
+
+Perintah untuk menjalankan image fahmpress/apache2 yang telah dibuat menggunakan dockerfile tidak lagi memakai argumen `/usr/sbin/apache2ctl -D FOREGROUND` seperti pada proses dockerizing apache yang dilakukan secara manual sebelumnya. Itu karena perintah untuk menjalankan daemon apache sudah diset dengan syntax CMD pada skrip dockerfile. CMD dapat menentukan apa yang akan proses oleh container saat dijalankan dengan perintah `docker run`. Akses web apache yang telah dibuat dengan menggunakan browser pada mesin host.
+
+Gambar 3.22 Apache web server
