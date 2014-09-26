@@ -40,7 +40,7 @@ Cek status penggunaan *storage* setelah dilakukan snapshot kedua.
 
 Gambar 4.6 Status *storage* setelah snapshot kedua
 
-#####2. Pengujian Penggunaan Pada Docker
+#####2. Pengujian Penggunaan Penyimpanan Pada Docker
 
 Jalankan container Docker dari sistem image Ubuntu:latest. Lalu cek container yang berjalan pada terminal yg berbeda.
 
@@ -86,7 +86,7 @@ Gambar 4.13 *virtual size* atau ukuran container (*base image* + image snapshot 
 
 #####3. Hasil Pengujian Efektifitas Penyimpanan
 
-Besaran peningkatan penggunaan *storage* akan dihitung dengan cara mengurangi status penggunaan *storage* setelah snapshot terakhir, dikurangi status penggunaan *storage* sebelum dilakukan snapshot. Pengukuran dilakukan pada partisi `/root`, karena penulis hanya menggunakan satu partisi pada mesin host untuk mendapatkan akurasi dalam pengukuran.
+Hasil pengujian penggunaan *storage* akan dihitung dengan cara mengurangi status penggunaan *storage* setelah snapshot terakhir, dikurangi status penggunaan *storage* sebelum dilakukan snapshot. Pengukuran dilakukan pada partisi `/root`, karena penulis hanya menggunakan satu partisi pada mesin host untuk mendapatkan akurasi dalam pengukuran.
 
 Penggunaan *storage* pada VirtualBox adalah sebagai berikut:
 
@@ -97,7 +97,55 @@ Sedangkan penggunaan *storage* pada docker adalah:
 7594024-7497764= 96260 bytes 
 
 ####4.1.2 Pengujian Efektifitas Docker Dalam Penggunaan Memory
-...
+#####1 Pengujian Penggunaan Memory Virtual Mesin Pada VirtualBox
+
+Pada pengujian ini penulis menjalankan 5 mesin virtual pada VirtualBox hasil duplikat dengan metode duplikasi *linked clone* dengan besar memory yang dipakai 192 MB. Pertama cek kapasitas penggunaan memory dengan perintah `top` sebelum mesin virtual di jalankan.
+
+![alt text](https://github.com/fahmpress/tugas-akhir/blob/master/images/gambar4.14.png "Gambar 4.14")
+
+Gambar 4.14 Status penggunaan memory sebelum menjalankan mesin virtual
+
+Jalankan 5 mesin virtual pada VirtualBox.
+
+![alt text](https://github.com/fahmpress/tugas-akhir/blob/master/images/gambar4.15.png "Gambar 4.15")
+
+Gambar 4.15 Menjalankan 5 mesin virtual pada VirtualBox
+
+Cek kapasistas penggunaan dan peningkatan memory setelah mesin virtual diajalankan.
+
+![alt text](https://github.com/fahmpress/tugas-akhir/blob/master/images/gambar4.16.png "Gambar 4.16")
+
+Gambar 4.16 Status memory setelah menjalankan mesin virtual
+
+#####2 Pengujian Penggunaan Memory Conatainer Docker
+
+Untuk melakukan pengujian pada container, penulis menjalankan container lebih banyak dari virtual mesin, yaitu 10 Container. Cek penggunaan memory sebelum menjalankan container.
+
+![alt text](https://github.com/fahmpress/tugas-akhir/blob/master/images/gambar4.17.png "Gambar 4.17")
+
+Gambar 4.17 Status penggunaan memory sebelum menjalankan container
+
+Jalankan 10 container `Ubuntu:latest` dengan perintah `docker run -i -t -d ubuntu /bin/bash`, perintah ini memerintahkan docker untuk menjalankan container pada mode *background*.
+
+![alt text](https://github.com/fahmpress/tugas-akhir/blob/master/images/gambar4.18.png "Gambar 4.18")
+
+Gambar 4.18 Menjalankan 10 container Docker
+
+Cek status penggunaan memory setelah menjalankan container.
+
+![alt text](https://github.com/fahmpress/tugas-akhir/blob/master/images/gambar4.19.png "Gambar 4.19")
+
+Gambar 4.19 status penggunaan memory setelah menjalankan 10 container
+
+#####3 Hasil Pengujian Penggunaan Memory
+
+Hasil pengujian penggunaan memory akan dihitung dengan mengurangi besaran penggunaan memory setelah menjalankan mesin virtual dengan besaran penggunaan memory sebelum menjalan mesin virtual. VirtualBox menjalankan 5 mesin virtual dengan penggunaan memory sebesar:
+
+2193672-1006232= 1187440 bytes
+
+sedangkan penggunaan memory container Docker adalah:
+
+1093896-1066364= 27532 bytes
 
 ###4.2 Pengujian Kompabilitas Docker 
 ####4.2.1 Pengujian Kompabilitas Docker Terhadap Perbedaanan Platform
