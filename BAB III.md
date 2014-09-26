@@ -304,7 +304,7 @@ Perintah di atas secara explisit memerintahkan Docker untuk menjalankan apache d
 
 ![alt text](https://github.com/fahmpress/tugas-akhir/blob/master/images/gambar3.19.png "Gambar 3.19")
 
-Gambar 3.19 Mengakses apache web server dari mesin host 
+Gambar 3.19 Mengakses apache web server dari mesin host pada port 8888 
 
 ####3.5.2 *Dockerizing* Apache Daemon Menggunakan Dockerfile
 
@@ -339,4 +339,4 @@ Perintah untuk menjalankan image fahmpress/apache2 yang telah dibuat menggunakan
 
 ![alt text](https://github.com/fahmpress/tugas-akhir/blob/master/images/gambar3.22.png "Gambar 3.22")
 
-Gambar 3.22 Apache web server
+Gambar 3.22 Mengakses apache web server dari mesin host pada port *default* http
