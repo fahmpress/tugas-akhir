@@ -40,7 +40,7 @@ Dalam proses deployment-nya Docker container menggunakan shared kernel dari mesi
 
 Gambar 3.2 Shared Host Kernel pada Docker
 
-Untuk pengujian ini akan dilakukan komparasi saat proses *deployment* mesin virtual (container) antara Docker dan VirtualBox. Docker dan Virtualbox akan diinstal pada mesin host dan sistem operasi yang sama. Setelah itu akan dijalankan beberapa mesin virtual dan container lalu akan dilihat penggunaan memorynya. Pengukuran memory akan menggunakan htop. Parameter uji dalam pengujian ini adalah besaran kenaikan memory yang digunakan saat menjalankan mesin virtual atau container.
+Untuk pengujian ini akan dilakukan komparasi saat proses *deployment* mesin virtual (container) antara Docker dan VirtualBox. Docker dan Virtualbox akan diinstal pada mesin host dan sistem operasi yang sama. Setelah itu akan dijalankan beberapa mesin virtual dan container lalu akan dilihat penggunaan memorynya. Pengukuran memory akan menggunakan top, yang secara *default* sudah tersedia pada OS Ubuntu 14.04. Parameter uji dalam pengujian ini adalah besaran kenaikan memory yang digunakan saat menjalankan mesin virtual atau container.
 
 ####3.1.2	Uji Kompabilitas Docker
 
@@ -105,10 +105,6 @@ VMware Workstation adalah hypervisor yang berjalan di komputer x64. Memungkinkan
 3.	VirtualBox
 
 Oracle VM VirtualBox merupakan paket software virtualisasi untuk komputer x86 dan AMD64/Intel64 dari Oracle Corporation sebagai bagian keluarga dari produk virtualisasi. VirtualBox sama seperti VMware, merupakan virtualisasi dengan menggunakan hypervisor tipe 2 yang menjalankan lapisan virtualisasi di atas komputer host. Pada pengujian ini VirtualBox akan digunakan sebagai alat komparasi dengan Docker pada pengujian pengehematan sumber daya.
-
-3.	Htop
-
-Htop adalah *system-monitor* dan *process-viewer* yang dibuat untuk Linux. Htop dirancang sebagai pilihan alternatif dari program Unix top. Htop menampilkan *update* proses yang berjalan pada komputer, secara normal diurutkan dengan banyaknya penggunaan CPU. Tidak seperti top, htop mendukung untuk menampilkan seluruh proses yang berjalan, tidak hanya menampilkan proses tertinggi dalam pemakaian sumber daya saja. Dalam pengujian ini htop akan digunakan sebagai alat pengukuran terhadap penggunaan sumber daya memory pada variasi uji efektifitas.
 
 ####3.2.2	Pemilihan Sistem Operasi
 
@@ -183,7 +179,7 @@ Selain menggunakan Docker registry, image juga bisa dipindahkan dengan menyimpan
 
 Gambar 3.5 Memindahkan Image Melalui FTP
 
-###3.4 Instalasi VirtualBox, Docker dan Htop
+###3.4 Instalasi VirtualBox dan Docker
 ####3.4.1 Instalasi VirtualBox dan Membuat Mesin Virtual
 
 Sistem operasi yang digunakan untuk pengujian ini adalah Ubuntu 14.04 LTS Server. Install VirtualBox via terminal dengan menggunakan perintah:
@@ -197,7 +193,7 @@ Setelah instalasi virtualbox selesai, buat virtual mesin dengan mengklik `new` p
 
 Gambar 3.6 Membuat mesin virtual baru
 
-Langkah selanjutnya menentukan besaran memory yang akan digunakan oleh mesin virtual. Dalam hal ini penulis menggunakan memory sebesar 256 MB. Sumber daya diambil sekecil mungkin untuk meminimalkan *overhead* pada mesin host.
+Langkah selanjutnya menentukan besaran memory yang akan digunakan oleh mesin virtual. Dalam hal ini penulis menggunakan memory sesuai dengan kebutuhan minimal untuk menjalankan OS Ubuntu yaitu 192 MB, hal ini dimaksudkan untuk meminimalkan *overhead* pada mesin host. 
 
 Gambar 3.7 Menentukan besaran memory
 
@@ -249,14 +245,6 @@ Untuk mendownload image tertentu gunakan perintah `docker pull <nama image>`. Se
 
 Gambar 3.14 Image Docker
 
-####3.4.3 Instalasi Htop
-
-Untuk instalasi Htop gunakan perintah berikut pada terminal:
-
-    apt-get install htop
-ketikan perintah `htop` pada terminal untuk memastikan instalasi htop berhasil.
-
-Gambar 3.15 Htop
 
 ###3.5 *Dockerizing* Aplikasi Dengan Container Docker
 
