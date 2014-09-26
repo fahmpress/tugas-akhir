@@ -340,3 +340,11 @@ Perintah untuk menjalankan image fahmpress/apache2 yang telah dibuat menggunakan
 ![alt text](https://github.com/fahmpress/tugas-akhir/blob/master/images/gambar3.22.png "Gambar 3.22")
 
 Gambar 3.22 Mengakses apache web server dari mesin host pada port *default* http
+
+Pada repository Docker Registry banyak terdapat image dan dockerfile sebagai *builder* yang bisa digunakan sebagai *base image* untuk aplikasi web server, agar pembuatan web server bisa lebih mudah dan efektif. Untuk pengujian 3 variasi uji kompabilitas Docker, penulis membangun aplikasi web menggunakan Dockerfile dari repository tutum/lamp pada Docker registry.
+
+![alt text](https://github.com/fahmpress/tugas-akhir/blob/master/images/gambar3.23.png "Gambar 3.23")
+
+Gambar 3.23 Repository tutum/lamp pada Docker Index Registry
+
+Penulis menggunakan Dockerfile dari tutum/lamp dengan modifikasi pada aplikasi PHP-nya. Aplikasi web server PHP menggunakan *source code* PHP yang disipakan penulis pada repository Github.
