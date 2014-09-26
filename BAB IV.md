@@ -261,6 +261,55 @@ Gambar 4.25 LAMP server berhasil dijalan pada OS CentOS
 
 ####4.2.2 Pengujian Kompabilitas Docker Terhadap Perbedaan *Environment* Host
 
+Untuk pengujian ini penulis akan menjalankan aplikasi web PHP yang dibangun dengan container Docker secara *native* pada mesin Ubuntu 14.04 pada mesin virtual Ubuntu 14.04 dengan menggunakan software virtualisasi VMWare Workstation.
+
+Aplikasi web PHP yang dibangun sebelumnya dengan Dockerfile tutum/lamp akan digunakan sebagai contoh aplikasi. Pindahkan image tar yanng sebelumnya telah disimpan via SFTP server, lalu jalankan pada mesin virtual Ubuntu.
+
+![alt text](https://github.com/fahmpress/tugas-akhir/blob/master/images/gambar4.26.png "Gambar 4.26")
+
+Gambar 4.26 Me-*load* image.tar dan menjalankannya
+
+Cek alamat IP mesin virtual untuk mengakses aplikasi PHP yang sudah dijalankan dengan container melalui mesin host.
+
+![alt text](https://github.com/fahmpress/tugas-akhir/blob/master/images/gambar4.27.png "Gambar 4.27")
+
+Gambar 4.27 Alamat IP mesin virtual untuk mengakses aplikasi web server
+
+Akses web server yang ada pada container docker di mesin virtual dari mesin host menggunakan web browser.
+
+![alt text](https://github.com/fahmpress/tugas-akhir/blob/master/images/gambar4.28.png "Gambar 4.28")
+
+Gambar 4.28 Web server berhasil diakses
+
+LAMP server yang dijalan menggunakan container pada mesin virtual VMWare berhasil dijalankan.
 
 ####4.2.3 Pengujian Kompabilitas Docker Terhadap Perbedaan Versi Aplikasi 
-...
+
+Pada pengujian ini penulis akan menjalankan aplikasi PHP4 dan PHP5 pada host yang sama. Aplikasi PHP yang berbeda versi tersebut dijalankan pada container yang berbeda. Penulis akan mengambil contoh aplikasi PHP4 dan PHP5 dari Docker registry. Karena image tutum/lamp yang sebelumnya dibuat menggunakan PHP versi 5, maka penulis masih akan menggunakan image tutum/lamp sebagai contoh untuk aplikasi PHP5. Dan menggunakan image cmfatih/php4 sebagai contoh aplikasi PHP4.
+
+![alt text](https://github.com/fahmpress/tugas-akhir/blob/master/images/gambar4.29.png "Gambar 4.29")
+
+Gambar 4.29 Image cmfatih/php4 pada registry Docker
+
+Download image cmfatih/php4 dengan perintah `docker pull cmfatih/php4`. Lalu jalankan image tersebut dengan perintah:
+
+    # docker run -d -p 10080:80 cmfatih/php4 /usr/local/apache2/bin/apachectl -D FOREGROUND
+    
+Jalankan container tutum/lamp dengan perintah:
+
+    # docker run -d -p 80:80 -p 3306:3306 tutum/lamp
+    
+Kedua container sudah berjalan, cek menggunakan `docker ps`.
+
+![alt text](https://github.com/fahmpress/tugas-akhir/blob/master/images/gambar4.30.png "Gambar 4.30")
+
+Gambar 4.30 Container cmfatih/php4 dan tutum/lamp
+
+Akses container cmfatih/php4 dengan url `http://localhost:80010`, sedangkan container tutum/lamp menggunakan url `http://localhost/phpinfo.php`.
+
+![alt text](https://github.com/fahmpress/tugas-akhir/blob/master/images/gambar4.31.png "Gambar 4.31")
+
+Gambar 4.31 Aplikasi web PHP4 dan PHP5 yang berjalan pada host.
+    
+Kedua versi PHP bisa berjalan pada waktu yang sama pada mesin host.
+
