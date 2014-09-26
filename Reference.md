@@ -57,3 +57,7 @@
 - **Dockerfile Reference**, http://docs.docker.com/reference/builder/, 26 September 2014
 
 - **Installation/System Requirements Ubuntu 14.04**, https://help.ubuntu.com/community/Installation/SystemRequirements, 26 September 2014
+
+- **tutum/lamp**, https://registry.hub.docker.com/u/tutum/lamp/, 27 September 2014
+
+- **cmfatih/php4**, https://registry.hub.docker.com/u/cmfatih/php4/, 27 September 2014
