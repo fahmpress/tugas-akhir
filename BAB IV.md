@@ -54,7 +54,7 @@ Cek status penggunaan *storage* sebelum dilakukan snapshot pertama.
 
 Gambar 4.8 Status *storage* sebelum snapshot
 
-Lakukan proses update index *source list* pada container dengan `apt-get update` lalu ambil snapshot dengan perintah `docker commit *<container id>* *<image id>*`.
+Lakukan proses update index *source list* pada container dengan `apt-get update` lalu ambil snapshot dengan perintah `docker commit <container id> <image id>`.
 
 ![alt text](https://github.com/fahmpress/tugas-akhir/blob/master/images/gambar4.9.png "Gambar 4.9")
 
