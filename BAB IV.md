@@ -143,7 +143,7 @@ Hasil pengujian penggunaan memory akan dihitung dengan mengurangi besaran penggu
 
 2193672-1006232= 1187440 bytes
 
-sedangkan penggunaan memory container Docker adalah:
+sedangkan penggunaan memory 10 container Docker adalah:
 
 1093896-1066364= 27532 bytes
 
