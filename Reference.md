@@ -51,3 +51,5 @@
 - **Docker Command Line**, http://docs.docker.com/reference/commandline/cli/ 25 September 2014
 
 - **Dockerizing Applications: A "Hello World"**, http://docs.docker.com/userguide/dockerizing/, 25 September 2014
+
+- **Dockerfile Reference**, http://docs.docker.com/reference/builder/, 26 September 2014
