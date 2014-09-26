@@ -191,21 +191,31 @@ atau mendownload pada halaman resmi virtualbox https://www.virtualbox.org/wiki/D
 
 Setelah instalasi virtualbox selesai, buat virtual mesin dengan mengklik `new` pada menu lalu beri nama dan pilih sistem operasi yang akan diinstall.
 
+![alt text](https://github.com/fahmpress/tugas-akhir/blob/master/images/gambar3.6.png "Gambar 3.6")
+
 Gambar 3.6 Membuat mesin virtual baru
 
 Langkah selanjutnya menentukan besaran memory yang akan digunakan oleh mesin virtual. Dalam hal ini penulis menggunakan memory sesuai dengan kebutuhan minimal untuk menjalankan OS Ubuntu yaitu 192 MB, hal ini dimaksudkan untuk meminimalkan *overhead* pada mesin host. 
+
+![alt text](https://github.com/fahmpress/tugas-akhir/blob/master/images/gambar3.7.png "Gambar 3.7")
 
 Gambar 3.7 Menentukan besaran memory
 
 Selanjutnya buat hardisk virtual dengan format VDI (*VirtualBox Disk Image*), dan memilih opsi *Dynamicallly allocated* agar penggunaan virtual hardisk efektif, ukurannya sesuai dengan besaran hardisk yang digunakan. Besaran hardisknya penulis menggunakan ukuran *default* yang diberikan oleh virtualbox yaitu 8 GB.
 
+![alt text](https://github.com/fahmpress/tugas-akhir/blob/master/images/gambar3.8.png "Gambar 3.8")
+
 Gambar 3.8 Menentukan besaran hardisk virtual
 
 Agar mesin virtual mendapat koneksi internet, adapternya harus dikonfigurasi mejadi *bridge* ke adapter fisik pada mesin host.
 
+![alt text](https://github.com/fahmpress/tugas-akhir/blob/master/images/gambar3.9.png "Gambar 3.9")
+
 Gambar 3.9 Setingan jaringan sebagai *bridge*
 
 Setelah itu jalankan mesin virtual dan pilih ISO file sistem operasi yang akan diinstall.
+
+![alt text](https://github.com/fahmpress/tugas-akhir/blob/master/images/gambar3.10.png "Gambar 3.10")
 
 Gambar 3.10 ISO installer sistem operasi
 
@@ -222,6 +232,8 @@ Cara instalasi Docker berbeda pada tiap sistem operasi. Dalam hal ini penulis me
 
 cek versi Docker dengan perintah `docker version`.
 
+![alt text](https://github.com/fahmpress/tugas-akhir/blob/master/images/gambar3.11.png "Gambar 3.11")
+
 Gambar 3.11 Docker versi 1.0.1
 
 Jika versi Docker yang diinstall dari repository Ubuntu tidak update, install Docker dari repository Docker, sebelumnya pastikan sistem APT mendukung `https`. Untuk menginstallnya, tambahkan repository Docker pada `apt-source list`, lakukan update lalu install paket `lxc-docker`.
@@ -232,6 +244,8 @@ Jika versi Docker yang diinstall dari repository Ubuntu tidak update, install Do
     $ sudo apt-get install lxc-docker
 Cek kembali versi Docker untuk memastikan Docker yang diinstall merupakan *latest stable version*.
 
+![alt text](https://github.com/fahmpress/tugas-akhir/blob/master/images/gambar3.12.png "Gambar 3.12")
+
 Gambar 3.12 Docker versi 1.2.0
 
 Setelah itu ketikan perintah berikut untuk mencoba menjalankan container Docker:
@@ -239,9 +253,13 @@ Setelah itu ketikan perintah berikut untuk mencoba menjalankan container Docker:
     $ sudo docker run -i -t ubuntu /bin/bash
 Perintah di atas akan menjalankan container dengan *base image* Ubuntu. Docker akan mencari image ubuntu secara lokal pada Docker host, jika image belum ada Docker akan otomatis mendownload image ke registry public.
 
+![alt text](https://github.com/fahmpress/tugas-akhir/blob/master/images/gambar3.13.png "Gambar 3.13")
+
 Gambar 3.13 Download image ubuntu dari *public registry*
 
 Untuk mendownload image tertentu gunakan perintah `docker pull <nama image>`. Setelah mengetikan perintah di atas, terminal akan berpindah ke terminal container yang dijalankan. Ketik `exitg` untuk keluar dari container. Lalu ketikan perintah `docker images` untuk melihat image apa saja yang ada pada repository lokal kita.
+
+![alt text](https://github.com/fahmpress/tugas-akhir/blob/master/images/gambar3.14.png "Gambar 3.14")
 
 Gambar 3.14 Image Docker
 
@@ -258,16 +276,23 @@ Penulis akan membuat aplikasi web server apache menggunakan container Docker unt
 
 perintah di atas akan merubah posisi terminal dari host ke dalam container. 
 
+![alt text](https://github.com/fahmpress/tugas-akhir/blob/master/images/gambar3.16.png "Gambar 3.16")
+
 Gambar 3.16 Menjalankan container Docker
 
 *Flag* `-i` mengizinkan untuk membuat koneksi interaktif, *flag* `t` memberikan sebuah pseudo-tty atau terminal di dalam container. Sedangkan `/bin/bash` adalah perintah untuk menjalankan *bash shell* di dalam container. Untuk melihat container yang sedang berjalan gunakan perintah `Docker ps` pada terminal yang lain.
 
+![alt text](https://github.com/fahmpress/tugas-akhir/blob/master/images/gambar3.17.png "Gambar 3.17")
+
 Gambar 3.17 Melihat container yang sedang berjalan
+
 Setelah itu lakukan instalasi apache di dalam container.
 
     # apt-get update
     # apt-get -y install apache2
 Sampai tahap ini docker apache web server belum bisa diakses dari luar container. Gunakan perintah `Docker Commit *<container id>* *<username/nama_image>*` untuk menyimpan perubahan pada container. Username yang digunakan disini adalah username yang digunakan untuk mengakses Docker index atau registry public. Username bisa didapatkan dengan mendaftar di halaman resmi Docker.
+
+![alt text](https://github.com/fahmpress/tugas-akhir/blob/master/images/gambar3.18.png "Gambar 3.18")
 
 Gambar 3.18 Menyimpan container ke dalam bentuk image
 
@@ -276,6 +301,8 @@ Secara *default* container yang sedang berjalan tidak bisa diakses dari luar, ag
     # docker run -p 8888:80 -d fahmpress/apache /usr/sbin/apache2ctl -D FOREGROUND
     
 Perintah di atas secara explisit memerintahkan Docker untuk menjalankan apache daemon di dalam container dan memetakan port 80 di container pada port 8888 di mesin host, sehingga web server apache bisa diakses dari luar container bahkan dari luar mesin host.
+
+![alt text](https://github.com/fahmpress/tugas-akhir/blob/master/images/gambar3.19.png "Gambar 3.19")
 
 Gambar 3.19 Mengakses apache web server dari mesin host 
 
@@ -294,7 +321,9 @@ Gambar 3.19 Mengakses apache web server dari mesin host
 
 Untuk menjalankan dockerfile gunakan perintah berikut pada direktori dimana dockerfile berada:
     
-    # docker build -t fahmpress/apache2 .
+    # docker build -t fahmpress/apache2
+
+![alt text](https://github.com/fahmpress/tugas-akhir/blob/master/images/gambar3.20.png "Gambar 3.20")
 
 Gambar 3.20 Membangun apache web server menggunakan dockerfile
 
@@ -302,8 +331,12 @@ Cek image yang telah dibuat dengan dockerfile tersebut, lalu jalankan dengan per
 
     docker run -p 80:80 -d fahmpress/apache2
 
+![alt text](https://github.com/fahmpress/tugas-akhir/blob/master/images/gambar3.21.png "Gambar 3.21")
+
 Gambar 3.21 Image yang telah dibuat dengan menggunakan dockerfile
 
 Perintah untuk menjalankan image fahmpress/apache2 yang telah dibuat menggunakan dockerfile tidak lagi memakai argumen `/usr/sbin/apache2ctl -D FOREGROUND` seperti pada proses dockerizing apache yang dilakukan secara manual sebelumnya. Itu karena perintah untuk menjalankan daemon apache sudah diset dengan syntax CMD pada skrip dockerfile. CMD dapat menentukan apa yang akan proses oleh container saat dijalankan dengan perintah `docker run`. Akses web apache yang telah dibuat dengan menggunakan browser pada mesin host.
+
+![alt text](https://github.com/fahmpress/tugas-akhir/blob/master/images/gambar3.22.png "Gambar 3.22")
 
 Gambar 3.22 Apache web server
