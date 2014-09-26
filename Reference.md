@@ -53,3 +53,5 @@
 - **Dockerizing Applications: A "Hello World"**, http://docs.docker.com/userguide/dockerizing/, 25 September 2014
 
 - **Dockerfile Reference**, http://docs.docker.com/reference/builder/, 26 September 2014
+
+- **Installation/System Requirements Ubuntu 14.04**, https://help.ubuntu.com/community/Installation/SystemRequirements, 26 September 2014
