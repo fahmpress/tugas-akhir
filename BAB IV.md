@@ -267,7 +267,7 @@ Aplikasi web PHP yang dibangun sebelumnya dengan Dockerfile tutum/lamp akan digu
 
 ![alt text](https://github.com/fahmpress/tugas-akhir/blob/master/images/gambar4.26.png "Gambar 4.26")
 
-Gambar 4.26 Me-*load* image.tar dan menjalankannya
+Gambar 4.26 Me-*load* image dan menjalankannya
 
 Cek alamat IP mesin virtual untuk mengakses aplikasi PHP yang sudah dijalankan dengan container melalui mesin host.
 
