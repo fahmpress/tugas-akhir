@@ -6,25 +6,37 @@
 
 Pengujian pertama akan dilakukan pada VirtualBox. Penggunaan *storage* diukur keniakannya saja setelah proses snapshot. Buka VirtualBox dan jalankan satu mesin virtual dengan sistem operasi ubuntu.
 
+![alt text](https://github.com/fahmpress/tugas-akhir/blob/master/images/gambar4.1.png "Gambar 4.1")
+
 Gambar 4.1 Sistem Operasi *guest* Ubuntu pada VirtualBox
 
 Lihat status penggunaan *storage* sebelum melakukan snapshot dengan perintah `df`.
+
+![alt text](https://github.com/fahmpress/tugas-akhir/blob/master/images/gambar4.2.png "Gambar 4.2")
 
 Gambar 4.2 Status penggunaan *storage* sebelum dilakukan snapshot
 
 Penulis menjalankan `apt-get update` sebagai contoh untuk melakukan proses yang memperbaharui kondisi mesin virtual. Setelah itu lakukan snapshot pertama.
 
+![alt text](https://github.com/fahmpress/tugas-akhir/blob/master/images/gambar4.3.png "Gambar 4.3")
+
 Gambar 4.3 Snapshot pertama
 
 Cek status penggunaan *storage* setelah dilakukan snapshot pertama.
+
+![alt text](https://github.com/fahmpress/tugas-akhir/blob/master/images/gambar4.4.png "Gambar 4.4")
 
 Gambar 4.4 Status *storage* setelah snapshot pertama
 
 Install apache web server pada mesin virtual, lalu lakukan snapshot kedua.
 
+![alt text](https://github.com/fahmpress/tugas-akhir/blob/master/images/gambar4.5.png "Gambar 4.5")
+
 Gambar 4.5 Snapshot kedua
 
 Cek status penggunaan *storage* setelah dilakukan snapshot kedua.
+
+![alt text](https://github.com/fahmpress/tugas-akhir/blob/master/images/gambar4.6.png "Gambar 4.6")
 
 Gambar 4.6 Status *storage* setelah snapshot kedua
 
@@ -32,29 +44,43 @@ Gambar 4.6 Status *storage* setelah snapshot kedua
 
 Jalankan container Docker dari sistem image Ubuntu:latest. Lalu cek container yang berjalan pada terminal yg berbeda.
 
+![alt text](https://github.com/fahmpress/tugas-akhir/blob/master/images/gambar4.7.png "Gambar 4.7")
+
 Gambar 4.7 Menjalankan Container Docker
 
 Cek status penggunaan *storage* sebelum dilakukan snapshot pertama.
+
+![alt text](https://github.com/fahmpress/tugas-akhir/blob/master/images/gambar4.8.png "Gambar 4.8")
 
 Gambar 4.8 Status *storage* sebelum snapshot
 
 Lakukan proses update index *source list* pada container dengan `apt-get update` lalu ambil snapshot dengan perintah `docker commit *<container id>* *<image id>*`.
 
+![alt text](https://github.com/fahmpress/tugas-akhir/blob/master/images/gambar4.9.png "Gambar 4.9")
+
 Gambar 4.9 Snapshot pertama
 
 Cek status penggunaan *storage*.
+
+![alt text](https://github.com/fahmpress/tugas-akhir/blob/master/images/gambar4.10.png "Gambar 4.10")
 
 Gambar 4.10 Status *storage* setelah snapshot pertama
 
 Lakukan instalasi apache web server pada container, setelah itu snapshot akan diambil snapshot kedua. 
 
+![alt text](https://github.com/fahmpress/tugas-akhir/blob/master/images/gambar4.11.png "Gambar 4.11")
+
 Gambar 4.11 Snapshot kedua
 
 Lihat status penggunaan *storage* setelah pengambilan snapshot kedua.
 
+![alt text](https://github.com/fahmpress/tugas-akhir/blob/master/images/gambar4.12.png "Gambar 4.12")
+
 Gambar 4.12 Status *storage* setelah snapshot kedua
 
 Jika hasil snapshot yang disimpan dalam bentuk image dilihat secara kesuluruhan, maka akan terlihat ukuran virtual (*virtual size*) dari snapshot yang diambil lebih besar dari *base image* yang digunakan. Ini bukan ukuran image snapshot sebenarnya, namun ukuran image snapshot ditambah dengan *base image*, dimana kedua layer image tersebut akan di-*load* bersamaan ketika image snapshot dijalankan sebagai container.
+
+![alt text](https://github.com/fahmpress/tugas-akhir/blob/master/images/gambar4.13.png "Gambar 4.13")
 
 Gambar 4.13 *virtual size* atau ukuran container (*base image* + image snapshot = *virtual size*)
 
